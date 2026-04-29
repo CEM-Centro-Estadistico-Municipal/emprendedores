@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro de Emprendedores · Municipalidad de Esquina</title>
+<meta name="description" content="Sumate al registro de emprendedoras y emprendedores de Esquina. Accedé a capacitaciones, ferias y herramientas para tu emprendimiento.">
+
+<!-- IBM Plex (Sans + Serif + Mono) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   SISTEMA DE DISEÑO CEM ESQUINA — TOKENS
+   ═══════════════════════════════════════════════════════════════════ */
+:root {
+  /* Azul institucional */
+  --cem-azul-50:  #e8eef5;
+  --cem-azul-100: #c5d5e8;
+  --cem-azul-200: #92b3d6;
+  --cem-azul-300: #5e90c4;
+  --cem-azul-500: #2872b1;
+  --cem-azul-600: #166aa8;
+  --cem-azul-700: #0e5a9e;
+  --cem-azul-800: #0a3a68;
+  --cem-azul-900: #07294a;
+
+  /* Ocre dorado */
+  --cem-ocre-100: #f3e6c9;
+  --cem-ocre-300: #d6ae6f;
+  --cem-ocre-500: #b8863d;
+  --cem-ocre-700: #8a632b;
+
+  /* Neutros cálidos */
+  --cem-papel:    #f8f5ee;
+  --cem-papel-2:  #eee6d5;
+  --cem-tinta:    #171614;
+  --cem-tinta-2:  #4a4742;
+  --cem-tinta-3:  #7a766f;
+  --cem-borde:    #e0d9c8;
+  --cem-borde-2:  #d0c8b3;
+
+  /* Semánticos */
+  --cem-verde:    #2f7d32;
+  --cem-rojo:     #a8322c;
+  --cem-amarillo: #c9971a;
+
+  /* Tipografía */
+  --font-sans:  'IBM Plex Sans', system-ui, sans-serif;
+  --font-serif: 'IBM Plex Serif', Georgia, serif;
+  --font-mono:  'IBM Plex Mono', monospace;
+
+  /* Espaciado (sistema 4) */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-6:  24px;
+  --sp-8:  32px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+
+  /* Radios */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-pill: 999px;
+
+  /* Sombras */
+  --sh-1: 0 1px 2px rgba(15,23,42,.04), 0 1px 1px rgba(15,23,42,.06);
+  --sh-2: 0 4px 12px rgba(15,23,42,.08);
+  --sh-3: 0 12px 32px rgba(15,23,42,.12);
+
+  /* Transiciones */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--cem-tinta);
+  background: var(--cem-papel);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern' 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   HEADER INSTITUCIONAL
+   ═══════════════════════════════════════════════════════════════════ */
+.header {
+  background: linear-gradient(135deg, var(--cem-azul-800) 0%, var(--cem-azul-700) 100%);
+  position: relative;
+  overflow: hidden;
+  color: white;
+  border-bottom: 4px solid var(--cem-ocre-500);
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 24px,
+    rgba(184, 134, 61, 0.08) 24px,
+    rgba(184, 134, 61, 0.08) 25px
+  );
+  pointer-events: none;
+}
+
+.header-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: var(--sp-8) var(--sp-6) var(--sp-12);
+  position: relative;
+  z-index: 1;
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cem-ocre-300);
+  margin-bottom: var(--sp-3);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.kicker .lucide {
+  width: 14px;
+  height: 14px;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--sp-3);
+}
+
+.subtitle {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--cem-azul-100);
+  max-width: 620px;
+  line-height: 1.55;
+}
+
+.header-meta {
+  display: flex;
+  gap: var(--sp-6);
+  margin-top: var(--sp-6);
+  padding-top: var(--sp-6);
+  border-top: 1px solid rgba(255,255,255,0.15);
+  flex-wrap: wrap;
+}
+
+.header-meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: 13px;
+  color: var(--cem-azul-100);
+}
+
+.header-meta-item .lucide {
+  width: 16px;
+  height: 16px;
+  color: var(--cem-ocre-300);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   PROGRESO
+   ═══════════════════════════════════════════════════════════════════ */
+.progress-bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(248, 245, 238, 0.92);
+  backdrop-filter: saturate(180%) blur(8px);
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid var(--cem-borde);
+}
+
+.progress-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: var(--sp-3) var(--sp-6);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+.progress-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--cem-tinta-3);
+  white-space: nowrap;
+}
+
+.progress-track {
+  flex: 1;
+  height: 6px;
+  background: var(--cem-borde);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cem-azul-700), var(--cem-ocre-500));
+  width: 0%;
+  transition: width 320ms var(--ease);
+  border-radius: var(--r-pill);
+}
+
+.progress-percent {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum';
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cem-azul-700);
+  min-width: 38px;
+  text-align: right;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   FORMULARIO
+   ═══════════════════════════════════════════════════════════════════ */
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: var(--sp-12) var(--sp-6) var(--sp-16);
+}
+
+.section {
+  background: white;
+  border: 1px solid var(--cem-borde);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+  margin-bottom: var(--sp-6);
+  overflow: hidden;
+  transition: box-shadow 240ms var(--ease);
+}
+
+.section:hover {
+  box-shadow: var(--sh-2);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-6) var(--sp-8);
+  border-bottom: 1px solid var(--cem-borde);
+  background: var(--cem-papel);
+}
+
+.section-num {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum';
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+  background: var(--cem-azul-700);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--cem-azul-800);
+  letter-spacing: -0.005em;
+}
+
+.section-body {
+  padding: var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+
+/* Campos */
+.field { display: flex; flex-direction: column; gap: var(--sp-2); }
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+
+@media (max-width: 600px) {
+  .field-row { grid-template-columns: 1fr; }
+}
+
+.field label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cem-tinta);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.field label .req {
+  color: var(--cem-rojo);
+  font-weight: 600;
+}
+
+.field-help {
+  font-size: 13px;
+  color: var(--cem-tinta-3);
+  line-height: 1.5;
+  margin-top: -2px;
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="tel"],
+.field input[type="number"],
+.field select,
+.field textarea {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--cem-tinta);
+  padding: 11px 14px;
+  border: 1px solid var(--cem-borde-2);
+  border-radius: var(--r-sm);
+  background: white;
+  transition: border-color 160ms var(--ease), box-shadow 160ms var(--ease);
+  width: 100%;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--cem-azul-700);
+  box-shadow: 0 0 0 3px rgba(14, 90, 158, 0.15);
+}
+
+.field input.invalid,
+.field select.invalid,
+.field textarea.invalid {
+  border-color: var(--cem-rojo);
+  box-shadow: 0 0 0 3px rgba(168, 50, 44, 0.12);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.5;
+}
+
+.field-error {
+  font-size: 13px;
+  color: var(--cem-rojo);
+  display: none;
+  align-items: center;
+  gap: var(--sp-1);
+  margin-top: 2px;
+}
+
+.field-error.visible { display: flex; }
+
+.field-error .lucide {
+  width: 14px;
+  height: 14px;
+}
+
+/* Radio y checkbox stylized */
+.options { display: flex; flex-direction: column; gap: var(--sp-2); }
+
+.options.inline {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: 12px 14px;
+  border: 1px solid var(--cem-borde);
+  border-radius: var(--r-sm);
+  background: var(--cem-papel);
+  cursor: pointer;
+  transition: all 160ms var(--ease);
+  font-size: 15px;
+  line-height: 1.45;
+  position: relative;
+}
+
+.option:hover {
+  border-color: var(--cem-azul-300);
+  background: var(--cem-azul-50);
+}
+
+.option input[type="radio"],
+.option input[type="checkbox"] {
+  margin-top: 2px;
+  accent-color: var(--cem-azul-700);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.option:has(input:checked) {
+  border-color: var(--cem-azul-700);
+  background: var(--cem-azul-50);
+  box-shadow: inset 0 0 0 1px var(--cem-azul-700);
+}
+
+.option-text {
+  flex: 1;
+}
+
+/* Campo "otro" inline */
+.otro-input {
+  margin-top: var(--sp-2);
+  display: none;
+}
+
+.otro-input.visible { display: block; }
+
+/* Sub-pregunta condicional */
+.conditional {
+  display: none;
+  padding-left: var(--sp-4);
+  border-left: 2px solid var(--cem-ocre-300);
+  margin-top: var(--sp-2);
+}
+
+.conditional.visible { display: block; animation: slideDown 240ms var(--ease); }
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Aviso de privacidad */
+.privacy-notice {
+  background: var(--cem-azul-50);
+  border-left: 3px solid var(--cem-azul-700);
+  padding: var(--sp-4) var(--sp-6);
+  border-radius: var(--r-sm);
+  font-size: 14px;
+  color: var(--cem-azul-800);
+  line-height: 1.55;
+  display: flex;
+  gap: var(--sp-3);
+  align-items: flex-start;
+}
+
+.privacy-notice .lucide {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--cem-azul-700);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BOTONES
+   ═══════════════════════════════════════════════════════════════════ */
+.actions {
+  display: flex;
+  gap: var(--sp-3);
+  justify-content: flex-end;
+  margin-top: var(--sp-8);
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: var(--r-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  transition: all 160ms var(--ease);
+  text-decoration: none;
+}
+
+.btn .lucide {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-primary {
+  background: var(--cem-azul-700);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--cem-azul-800);
+  transform: translateY(-1px);
+  box-shadow: var(--sh-2);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  background: var(--cem-tinta-3);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--cem-azul-700);
+  border-color: var(--cem-borde-2);
+}
+
+.btn-secondary:hover {
+  border-color: var(--cem-azul-700);
+  background: var(--cem-azul-50);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   MODAL DE PREVIEW
+   ═══════════════════════════════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 41, 74, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--sp-6);
+  z-index: 100;
+  overflow-y: auto;
+}
+
+.modal-overlay.visible {
+  display: flex;
+  animation: fadeIn 180ms var(--ease);
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal {
+  background: var(--cem-papel);
+  border-radius: var(--r-md);
+  max-width: 720px;
+  width: 100%;
+  margin-top: var(--sp-8);
+  margin-bottom: var(--sp-8);
+  box-shadow: var(--sh-3);
+  overflow: hidden;
+  animation: slideUp 240ms var(--ease);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+  background: var(--cem-azul-700);
+  color: white;
+  padding: var(--sp-6) var(--sp-8);
+  border-bottom: 3px solid var(--cem-ocre-500);
+}
+
+.modal-header-kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cem-ocre-300);
+  margin-bottom: var(--sp-1);
+}
+
+.modal-header h2 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.modal-body {
+  padding: var(--sp-6) var(--sp-8);
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.preview-section {
+  margin-bottom: var(--sp-6);
+}
+
+.preview-section-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cem-tinta-3);
+  margin-bottom: var(--sp-3);
+  padding-bottom: var(--sp-2);
+  border-bottom: 1px solid var(--cem-borde);
+}
+
+.preview-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--sp-4);
+  padding: var(--sp-2) 0;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .preview-row { grid-template-columns: 1fr; gap: var(--sp-1); }
+}
+
+.preview-label {
+  color: var(--cem-tinta-3);
+  font-weight: 500;
+}
+
+.preview-value {
+  color: var(--cem-tinta);
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.preview-value.empty {
+  color: var(--cem-tinta-3);
+  font-style: italic;
+}
+
+.modal-footer {
+  padding: var(--sp-4) var(--sp-8);
+  border-top: 1px solid var(--cem-borde);
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.modal-footer-text {
+  font-size: 13px;
+  color: var(--cem-tinta-3);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ESTADO ENVIADO / ERROR
+   ═══════════════════════════════════════════════════════════════════ */
+.feedback {
+  display: none;
+  text-align: center;
+  padding: var(--sp-12) var(--sp-6);
+  background: white;
+  border-radius: var(--r-md);
+  border: 1px solid var(--cem-borde);
+  box-shadow: var(--sh-1);
+}
+
+.feedback.visible { display: block; }
+
+.feedback-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--sp-6);
+}
+
+.feedback.success .feedback-icon {
+  background: rgba(47, 125, 50, 0.12);
+  color: var(--cem-verde);
+}
+
+.feedback.error .feedback-icon {
+  background: rgba(168, 50, 44, 0.12);
+  color: var(--cem-rojo);
+}
+
+.feedback-icon .lucide {
+  width: 32px;
+  height: 32px;
+}
+
+.feedback h2 {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: var(--sp-3);
+  color: var(--cem-azul-800);
+}
+
+.feedback p {
+  color: var(--cem-tinta-2);
+  max-width: 520px;
+  margin: 0 auto var(--sp-2);
+}
+
+.feedback-id {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum';
+  background: var(--cem-papel);
+  border: 1px solid var(--cem-borde-2);
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--r-sm);
+  margin-top: var(--sp-4);
+  color: var(--cem-azul-800);
+  font-weight: 500;
+}
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: var(--sp-8) var(--sp-6);
+  color: var(--cem-tinta-3);
+  font-size: 13px;
+  border-top: 1px solid var(--cem-borde);
+  background: var(--cem-papel-2);
+}
+
+.footer-line {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--cem-ocre-700);
+  margin-bottom: var(--sp-2);
+}
+
+/* Responsive ajustes */
+@media (max-width: 600px) {
+  .title { font-size: 32px; }
+  .header-inner { padding: var(--sp-6) var(--sp-4) var(--sp-8); }
+  main { padding: var(--sp-8) var(--sp-3) var(--sp-12); }
+  .section-header { padding: var(--sp-4) var(--sp-6); }
+  .section-body { padding: var(--sp-6); }
+  .section-title { font-size: 18px; }
+  .actions { flex-direction: column-reverse; }
+  .actions .btn { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════
+     HEADER INSTITUCIONAL
+     ════════════════════════════════════════════════════════════════ -->
+<header class="header">
+  <div class="header-inner">
+    <div class="kicker">
+      <i data-lucide="landmark"></i>
+      Municipalidad de Esquina · Área de Emprendedores
+    </div>
+    <h1 class="title">Registro de emprendedores</h1>
+    <p class="subtitle">Sumate al registro municipal y accedé a capacitaciones, ferias y herramientas para tu emprendimiento. Es el primer paso para empezar a trabajar juntos.</p>
+    <div class="header-meta">
+      <div class="header-meta-item">
+        <i data-lucide="clock"></i> Te lleva 5 minutos
+      </div>
+      <div class="header-meta-item">
+        <i data-lucide="shield-check"></i> Tus datos son confidenciales
+      </div>
+      <div class="header-meta-item">
+        <i data-lucide="message-circle"></i> Te contactamos por WhatsApp
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Barra de progreso -->
+<div class="progress-bar">
+  <div class="progress-inner">
+    <span class="progress-label">Avance del formulario</span>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <span class="progress-percent" id="progressPercent">0%</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     FORMULARIO
+     ════════════════════════════════════════════════════════════════ -->
+<main>
+<form id="formulario" novalidate>
+
+  <!-- ═══════════ SECCIÓN 1 — DATOS PERSONALES ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2 class="section-title">Datos personales</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="field">
+        <label for="nombreApellido">Nombre y apellido <span class="req">*</span></label>
+        <input type="text" id="nombreApellido" name="nombreApellido" required autocomplete="name">
+        <div class="field-error" data-error-for="nombreApellido"><i data-lucide="alert-circle"></i> Completá tu nombre y apellido.</div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="dni">DNI <span class="req">*</span></label>
+          <input type="text" id="dni" name="dni" required inputmode="numeric" autocomplete="off" placeholder="Sin puntos ni espacios">
+          <div class="field-error" data-error-for="dni"><i data-lucide="alert-circle"></i> Ingresá un DNI válido (7 u 8 dígitos).</div>
+        </div>
+        <div class="field">
+          <label for="telefono">Teléfono (WhatsApp) <span class="req">*</span></label>
+          <input type="tel" id="telefono" name="telefono" required inputmode="tel" placeholder="Ej: 3777 123456">
+          <div class="field-error" data-error-for="telefono"><i data-lucide="alert-circle"></i> Ingresá un teléfono válido.</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Correo electrónico</label>
+        <div class="field-help">Si tenés, nos permite enviarte información, certificados y novedades.</div>
+        <input type="email" id="email" name="email" autocomplete="email" placeholder="ejemplo@correo.com">
+        <div class="field-error" data-error-for="email"><i data-lucide="alert-circle"></i> Ingresá un correo válido.</div>
+      </div>
+
+      <div class="field">
+        <label for="barrio">Barrio <span class="req">*</span></label>
+        <div class="field-help">Seleccioná el barrio donde vivís o donde funciona el emprendimiento.</div>
+        <select id="barrio" name="barrio" required>
+          <option value="">Seleccionar barrio...</option>
+          <option>1ra Sección Ejido</option>
+          <option>3ra Sección</option>
+          <option>9 de Julio 0651</option>
+          <option>Antártida Argentina</option>
+          <option>Arroyo Vega</option>
+          <option>B° 30 Viviendas</option>
+          <option>B° 35 Viviendas</option>
+          <option>B° 48 Viviendas</option>
+          <option>B° 100 Viviendas</option>
+          <option>B° Bello Horizonte</option>
+          <option>B° Bicentenario</option>
+          <option>B° Cooperativa</option>
+          <option>B° El Piropo Com. 2da</option>
+          <option>B° Islas Malvinas</option>
+          <option>B° Itatí</option>
+          <option>B° La Tablada</option>
+          <option>B° Las Palmeras</option>
+          <option>B° San Antonio</option>
+          <option>B° San Benito</option>
+          <option>B° San Cayetano</option>
+          <option>B° San Fernando</option>
+          <option>Camino al Medio</option>
+          <option>Centro</option>
+          <option>Constitución 1921</option>
+          <option>Cortada Las Palmeras</option>
+          <option>Emilio Hansen</option>
+          <option>Escuela 434 Bruneti (Calle 50)</option>
+          <option>Longa y Rebechi</option>
+          <option>Los Sauces</option>
+          <option>Mitre y Carrera</option>
+          <option>Moreno y Gral. Paz</option>
+          <option>Serrano Soto</option>
+          <option>Verón de Astrada</option>
+          <option>Otro / Zona rural</option>
+        </select>
+        <div class="field-error" data-error-for="barrio"><i data-lucide="alert-circle"></i> Seleccioná tu barrio.</div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>¿Qué edad tenés? <span class="req">*</span></label>
+          <div class="options">
+            <label class="option"><input type="radio" name="edad" value="Menor de 25 años" required><span class="option-text">Menor de 25 años</span></label>
+            <label class="option"><input type="radio" name="edad" value="Entre 25 y 40 años"><span class="option-text">Entre 25 y 40 años</span></label>
+            <label class="option"><input type="radio" name="edad" value="Mayor de 40 años"><span class="option-text">Mayor de 40 años</span></label>
+          </div>
+          <div class="field-error" data-error-for="edad"><i data-lucide="alert-circle"></i> Elegí una opción.</div>
+        </div>
+        <div class="field">
+          <label>Género</label>
+          <div class="field-help">Opcional. Nos ayuda a entender mejor la diversidad de emprendedores.</div>
+          <div class="options">
+            <label class="option"><input type="radio" name="genero" value="Femenino"><span class="option-text">Femenino</span></label>
+            <label class="option"><input type="radio" name="genero" value="Masculino"><span class="option-text">Masculino</span></label>
+            <label class="option"><input type="radio" name="genero" value="No binario / otro"><span class="option-text">No binario / otro</span></label>
+            <label class="option"><input type="radio" name="genero" value="Prefiero no decirlo"><span class="option-text">Prefiero no decirlo</span></label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ SECCIÓN 2 — DATOS DEL EMPRENDIMIENTO ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2 class="section-title">Datos del emprendimiento</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="field">
+        <label for="nombreEmprendimiento">Nombre del emprendimiento</label>
+        <div class="field-help">Si todavía no tiene nombre, dejalo en blanco.</div>
+        <input type="text" id="nombreEmprendimiento" name="nombreEmprendimiento">
+      </div>
+
+      <div class="field">
+        <label for="queVende">¿Qué vendés o qué servicio ofrecés? <span class="req">*</span></label>
+        <div class="field-help">Contanos brevemente en tus propias palabras.</div>
+        <textarea id="queVende" name="queVende" required maxlength="500"></textarea>
+        <div class="field-error" data-error-for="queVende"><i data-lucide="alert-circle"></i> Contanos qué vendés o qué servicio ofrecés.</div>
+      </div>
+
+      <div class="field">
+        <label>Rubro principal <span class="req">*</span></label>
+        <div class="options">
+          <label class="option"><input type="radio" name="rubro" value="Alimentos y bebidas" required><span class="option-text">Alimentos y bebidas</span></label>
+          <label class="option"><input type="radio" name="rubro" value="Textil / indumentaria"><span class="option-text">Textil / indumentaria</span></label>
+          <label class="option"><input type="radio" name="rubro" value="Artesanías"><span class="option-text">Artesanías</span></label>
+          <label class="option"><input type="radio" name="rubro" value="Servicios"><span class="option-text">Servicios (reparaciones, limpieza, etc.)</span></label>
+          <label class="option"><input type="radio" name="rubro" value="Belleza / estética"><span class="option-text">Belleza / estética</span></label>
+          <label class="option"><input type="radio" name="rubro" value="Tecnología / digital"><span class="option-text">Tecnología / digital</span></label>
+          <label class="option"><input type="radio" name="rubro" value="Construcción / mantenimiento"><span class="option-text">Construcción / mantenimiento</span></label>
+          <label class="option"><input type="radio" name="rubro" value="Otro" data-toggle="rubroOtro"><span class="option-text">Otro (especificar)</span></label>
+        </div>
+        <input type="text" id="rubroOtro" name="rubroOtro" class="otro-input" placeholder="Especificá tu rubro">
+        <div class="field-error" data-error-for="rubro"><i data-lucide="alert-circle"></i> Elegí un rubro.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ SECCIÓN 3 — SITUACIÓN ACTUAL ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2 class="section-title">Situación actual</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="field-row">
+        <div class="field">
+          <label>¿En qué etapa está tu emprendimiento? <span class="req">*</span></label>
+          <div class="options">
+            <label class="option"><input type="radio" name="etapa" value="Estoy empezando" required><span class="option-text">Estoy empezando</span></label>
+            <label class="option"><input type="radio" name="etapa" value="Ya vendo, pero quiero mejorar"><span class="option-text">Ya vendo, pero quiero mejorar</span></label>
+            <label class="option"><input type="radio" name="etapa" value="Ya estoy más consolidado/a"><span class="option-text">Ya estoy más consolidado/a</span></label>
+          </div>
+          <div class="field-error" data-error-for="etapa"><i data-lucide="alert-circle"></i> Elegí una opción.</div>
+        </div>
+        <div class="field">
+          <label>¿Hace cuánto emprendés? <span class="req">*</span></label>
+          <div class="options">
+            <label class="option"><input type="radio" name="antiguedad" value="Menos de 6 meses" required><span class="option-text">Menos de 6 meses</span></label>
+            <label class="option"><input type="radio" name="antiguedad" value="Entre 6 meses y 2 años"><span class="option-text">Entre 6 meses y 2 años</span></label>
+            <label class="option"><input type="radio" name="antiguedad" value="Más de 2 años"><span class="option-text">Más de 2 años</span></label>
+          </div>
+          <div class="field-error" data-error-for="antiguedad"><i data-lucide="alert-circle"></i> Elegí una opción.</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>¿Dónde vendés actualmente? <span class="req">*</span></label>
+        <div class="field-help">Podés marcar más de una opción.</div>
+        <div class="options">
+          <label class="option"><input type="checkbox" name="dondeVende" value="Desde mi casa"><span class="option-text">Desde mi casa</span></label>
+          <label class="option"><input type="checkbox" name="dondeVende" value="Redes sociales"><span class="option-text">Redes sociales</span></label>
+          <label class="option"><input type="checkbox" name="dondeVende" value="Ferias"><span class="option-text">Ferias</span></label>
+          <label class="option"><input type="checkbox" name="dondeVende" value="Local propio"><span class="option-text">Local propio</span></label>
+          <label class="option"><input type="checkbox" name="dondeVende" value="Por encargo / boca a boca"><span class="option-text">Por encargo / boca a boca</span></label>
+          <label class="option"><input type="checkbox" name="dondeVende" value="Otro" data-toggle="dondeVendeOtro"><span class="option-text">Otro (especificar)</span></label>
+        </div>
+        <input type="text" id="dondeVendeOtro" name="dondeVendeOtro" class="otro-input" placeholder="Especificá dónde vendés">
+        <div class="field-error" data-error-for="dondeVende"><i data-lucide="alert-circle"></i> Marcá al menos una opción.</div>
+      </div>
+
+      <div class="field">
+        <label>¿Cuántas personas trabajan en tu emprendimiento? <span class="req">*</span></label>
+        <div class="options">
+          <label class="option"><input type="radio" name="personasTrabajan" value="Solo yo" required><span class="option-text">Solo yo</span></label>
+          <label class="option"><input type="radio" name="personasTrabajan" value="Con ayuda familiar (sin sueldo)"><span class="option-text">Con ayuda familiar (sin sueldo)</span></label>
+          <label class="option"><input type="radio" name="personasTrabajan" value="Con empleados o socios"><span class="option-text">Con empleados o socios</span></label>
+        </div>
+        <div class="field-error" data-error-for="personasTrabajan"><i data-lucide="alert-circle"></i> Elegí una opción.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ SECCIÓN 4 — CANALES Y HERRAMIENTAS ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2 class="section-title">Canales y herramientas</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="field">
+        <label>¿Tenés redes sociales para tu emprendimiento? <span class="req">*</span></label>
+        <div class="options inline">
+          <label class="option"><input type="radio" name="tieneRedes" value="Sí" required data-toggle-section="cualesRedes"><span class="option-text">Sí</span></label>
+          <label class="option"><input type="radio" name="tieneRedes" value="No"><span class="option-text">No</span></label>
+        </div>
+        <div class="field-error" data-error-for="tieneRedes"><i data-lucide="alert-circle"></i> Elegí una opción.</div>
+
+        <div class="conditional" id="cualesRedes-section">
+          <div class="field">
+            <label for="cualesRedes">¿Cuáles usás?</label>
+            <div class="field-help">Ej: Instagram, Facebook, TikTok. Si tenés usuarios, pegalos.</div>
+            <input type="text" id="cualesRedes" name="cualesRedes" placeholder="@miemprendimiento, FB: Mi Emprendimiento">
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>¿Usás medios de pago digitales? <span class="req">*</span></label>
+        <div class="field-help">Transferencias, Mercado Pago, billeteras virtuales, etc.</div>
+        <div class="options inline">
+          <label class="option"><input type="radio" name="mediosPagoDigitales" value="Sí" required><span class="option-text">Sí</span></label>
+          <label class="option"><input type="radio" name="mediosPagoDigitales" value="No"><span class="option-text">No</span></label>
+        </div>
+        <div class="field-error" data-error-for="mediosPagoDigitales"><i data-lucide="alert-circle"></i> Elegí una opción.</div>
+      </div>
+
+      <div class="field">
+        <label>¿Tenés forma de facturar o estás inscripto/a en AFIP? <span class="req">*</span></label>
+        <div class="field-help">Esto nos ayuda a orientarte hacia los programas que mejor se adapten a tu situación.</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="situacionAfip" value="No, todavía no" required><span class="option-text">No, todavía no</span></label>
+          <label class="option"><input type="radio" name="situacionAfip" value="Estoy en proceso de inscribirme"><span class="option-text">Estoy en proceso de inscribirme</span></label>
+          <label class="option"><input type="radio" name="situacionAfip" value="Sí, soy monotributista"><span class="option-text">Sí, soy monotributista</span></label>
+          <label class="option"><input type="radio" name="situacionAfip" value="Sí, responsable inscripto/a"><span class="option-text">Sí, responsable inscripto/a</span></label>
+        </div>
+        <div class="field-error" data-error-for="situacionAfip"><i data-lucide="alert-circle"></i> Elegí una opción.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ SECCIÓN 5 — NECESIDADES ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2 class="section-title">Necesidades</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="field">
+        <label>¿Qué te gustaría mejorar hoy? <span class="req">*</span></label>
+        <div class="field-help">Elegí las opciones que más se acerquen a tu situación actual. Podés marcar varias.</div>
+        <div class="options">
+          <label class="option"><input type="checkbox" name="queMejorar" value="Aprender a vender más"><span class="option-text">Aprender a vender más</span></label>
+          <label class="option"><input type="checkbox" name="queMejorar" value="Organizar mejor mi emprendimiento"><span class="option-text">Organizar mejor mi emprendimiento</span></label>
+          <label class="option"><input type="checkbox" name="queMejorar" value="Mejorar mis precios"><span class="option-text">Mejorar mis precios</span></label>
+          <label class="option"><input type="checkbox" name="queMejorar" value="Tener más clientes"><span class="option-text">Tener más clientes</span></label>
+          <label class="option"><input type="checkbox" name="queMejorar" value="Acceder a ferias"><span class="option-text">Acceder a ferias</span></label>
+          <label class="option"><input type="checkbox" name="queMejorar" value="Acceder a financiamiento"><span class="option-text">Acceder a financiamiento</span></label>
+          <label class="option"><input type="checkbox" name="queMejorar" value="Mejorar el uso de redes sociales"><span class="option-text">Mejorar el uso de redes sociales</span></label>
+          <label class="option"><input type="checkbox" name="queMejorar" value="Formalizar mi emprendimiento (AFIP, facturación)"><span class="option-text">Formalizar mi emprendimiento (AFIP, facturación)</span></label>
+          <label class="option"><input type="checkbox" name="queMejorar" value="Otro" data-toggle="queMejorarOtro"><span class="option-text">Otro (especificar)</span></label>
+        </div>
+        <input type="text" id="queMejorarOtro" name="queMejorarOtro" class="otro-input" placeholder="Especificá qué te gustaría mejorar">
+        <div class="field-error" data-error-for="queMejorar"><i data-lucide="alert-circle"></i> Marcá al menos una opción.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ SECCIÓN 6 — PARTICIPACIÓN ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2 class="section-title">Participación</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="field">
+        <label>¿Te interesa participar en...? <span class="req">*</span></label>
+        <div class="field-help">Podés marcar todas las que quieras.</div>
+        <div class="options">
+          <label class="option"><input type="checkbox" name="interesParticipar" value="Capacitaciones"><span class="option-text">Capacitaciones</span></label>
+          <label class="option"><input type="checkbox" name="interesParticipar" value="Ferias"><span class="option-text">Ferias</span></label>
+          <label class="option"><input type="checkbox" name="interesParticipar" value="Mentorías individuales"><span class="option-text">Mentorías individuales</span></label>
+        </div>
+        <div class="field-error" data-error-for="interesParticipar"><i data-lucide="alert-circle"></i> Marcá al menos una opción.</div>
+      </div>
+
+      <div class="field">
+        <label>¿En qué momentos podés participar? <span class="req">*</span></label>
+        <div class="field-help">Ayuda a organizar los horarios de actividades. Podés marcar más de uno.</div>
+        <div class="options">
+          <label class="option"><input type="checkbox" name="disponibilidad" value="Mañana (antes de las 12 hs)"><span class="option-text">Mañana (antes de las 12 hs)</span></label>
+          <label class="option"><input type="checkbox" name="disponibilidad" value="Tarde (12 a 18 hs)"><span class="option-text">Tarde (12 a 18 hs)</span></label>
+          <label class="option"><input type="checkbox" name="disponibilidad" value="Noche (después de las 18 hs)"><span class="option-text">Noche (después de las 18 hs)</span></label>
+          <label class="option"><input type="checkbox" name="disponibilidad" value="Fin de semana"><span class="option-text">Fin de semana</span></label>
+        </div>
+        <div class="field-error" data-error-for="disponibilidad"><i data-lucide="alert-circle"></i> Marcá al menos una opción.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ SECCIÓN 7 — AUTORIZACIÓN ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2 class="section-title">Autorización</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="privacy-notice">
+        <i data-lucide="shield"></i>
+        <div>
+          <strong>Política de privacidad.</strong> Los datos que ingresás son utilizados exclusivamente por el Área de Emprendedores de la Municipalidad de Esquina y no son compartidos con terceros. Solo los datos comerciales del emprendimiento (nombre, rubro, qué ofrecés, contacto) podrán publicarse en el directorio público con tu autorización previa.
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="option" style="background:white; border-color:var(--cem-borde-2);">
+          <input type="checkbox" id="autorizacionContacto" name="autorizacionContacto" required>
+          <span class="option-text">
+            <strong>Autorizo a recibir información del Área de Emprendedores</strong> por WhatsApp o correo electrónico. <span class="req">*</span>
+          </span>
+        </label>
+        <div class="field-error" data-error-for="autorizacionContacto"><i data-lucide="alert-circle"></i> Tenés que autorizar el contacto para registrarte.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Acciones -->
+  <div class="actions">
+    <button type="submit" class="btn btn-primary" id="btnRevisar">
+      Revisar y enviar <i data-lucide="arrow-right"></i>
+    </button>
+  </div>
+
+</form>
+
+<!-- ═══════════ FEEDBACK SUCCESS ═══════════ -->
+<div class="feedback success" id="feedbackSuccess">
+  <div class="feedback-icon"><i data-lucide="check"></i></div>
+  <h2>¡Gracias por registrarte!</h2>
+  <p>Recibimos tu información correctamente. Desde el Área de Emprendedores nos vamos a comunicar con vos para que puedas acceder a capacitaciones, ferias y herramientas para tu emprendimiento.</p>
+  <div class="feedback-id" id="feedbackId"></div>
+  <div style="margin-top: var(--sp-6);">
+    <button class="btn btn-secondary" onclick="location.reload()">
+      <i data-lucide="rotate-ccw"></i> Registrar otro emprendimiento
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════ FEEDBACK ERROR ═══════════ -->
+<div class="feedback error" id="feedbackError">
+  <div class="feedback-icon"><i data-lucide="alert-triangle"></i></div>
+  <h2>No pudimos enviar tu registro</h2>
+  <p id="errorMessage">Hubo un problema al guardar tus datos. Por favor probá de nuevo en unos minutos o contactanos por WhatsApp.</p>
+  <div style="margin-top: var(--sp-6);">
+    <button class="btn btn-primary" onclick="document.getElementById('feedbackError').classList.remove('visible'); document.getElementById('formulario').style.display='block';">
+      <i data-lucide="arrow-left"></i> Volver e intentar de nuevo
+    </button>
+  </div>
+</div>
+
+</main>
+
+<!-- ═══════════ MODAL DE PREVIEW ═══════════ -->
+<div class="modal-overlay" id="modalPreview">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-header-kicker">Paso final · Revisá antes de enviar</div>
+      <h2>Resumen de tu registro</h2>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer">
+      <span class="modal-footer-text">¿Está todo correcto?</span>
+      <div style="display:flex; gap: var(--sp-3); flex-wrap:wrap;">
+        <button type="button" class="btn btn-secondary" id="btnCorregir">
+          <i data-lucide="arrow-left"></i> Corregir
+        </button>
+        <button type="button" class="btn btn-primary" id="btnConfirmar">
+          <i data-lucide="send"></i> Confirmar y enviar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <div class="footer-line">Centro Estadístico Municipal · Planificación Estratégica</div>
+  <div>Municipalidad de Esquina · Corrientes</div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════════
+     LÓGICA
+     ════════════════════════════════════════════════════════════════ -->
+<script>
+// Inicializar iconos Lucide
+lucide.createIcons();
+
+// ═══════════════════════════════════════════════════════════════════
+// CONFIGURACIÓN
+// ═══════════════════════════════════════════════════════════════════
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzCEYR_StuT10CZU66Wutq1_XM6o-2eOdjjxKMCYNBer9d5JjFQtJIFU3YnRLt2TWEQjw/exec';
+
+const form = document.getElementById('formulario');
+const modalPreview = document.getElementById('modalPreview');
+const modalBody = document.getElementById('modalBody');
+const btnRevisar = document.getElementById('btnRevisar');
+const btnConfirmar = document.getElementById('btnConfirmar');
+const btnCorregir = document.getElementById('btnCorregir');
+const feedbackSuccess = document.getElementById('feedbackSuccess');
+const feedbackError = document.getElementById('feedbackError');
+
+// ═══════════════════════════════════════════════════════════════════
+// CAMPO "OTRO" — toggle visibilidad
+// ═══════════════════════════════════════════════════════════════════
+document.querySelectorAll('[data-toggle]').forEach(el => {
+  el.addEventListener('change', () => {
+    const target = document.getElementById(el.dataset.toggle);
+    if (!target) return;
+    if (el.type === 'radio') {
+      // Para radio: ocultar todos los otros-input del mismo grupo
+      const groupName = el.name;
+      document.querySelectorAll(`[data-toggle][name="${groupName}"]`).forEach(otro => {
+        const otroTarget = document.getElementById(otro.dataset.toggle);
+        if (otroTarget && otroTarget !== target) otroTarget.classList.remove('visible');
+      });
+      target.classList.toggle('visible', el.checked);
+    } else {
+      target.classList.toggle('visible', el.checked);
+      if (!el.checked) target.value = '';
+    }
+  });
+});
+
+// Listener general de radios para limpiar otros-input cuando se cambia de opción
+document.querySelectorAll('input[type="radio"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    const groupName = radio.name;
+    document.querySelectorAll(`[data-toggle][name="${groupName}"]`).forEach(otro => {
+      if (otro !== radio) {
+        const otroTarget = document.getElementById(otro.dataset.toggle);
+        if (otroTarget && !otro.checked) {
+          otroTarget.classList.remove('visible');
+          otroTarget.value = '';
+        }
+      }
+    });
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════════
+// LÓGICA CONDICIONAL — Pregunta 16 (cuáles redes) solo si "Sí" en P15
+// ═══════════════════════════════════════════════════════════════════
+document.querySelectorAll('[data-toggle-section]').forEach(el => {
+  el.addEventListener('change', () => {
+    const sec = document.getElementById(el.dataset.toggleSection + '-section');
+    if (sec) sec.classList.toggle('visible', el.checked);
+  });
+});
+
+document.querySelectorAll('input[name="tieneRedes"]').forEach(r => {
+  r.addEventListener('change', () => {
+    const sec = document.getElementById('cualesRedes-section');
+    const cualesRedes = document.getElementById('cualesRedes');
+    if (r.value === 'No' && r.checked) {
+      sec.classList.remove('visible');
+      cualesRedes.value = '';
+    }
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════════
+// PROGRESO — calcular % de campos completados
+// ═══════════════════════════════════════════════════════════════════
+const progressFill = document.getElementById('progressFill');
+const progressPercent = document.getElementById('progressPercent');
+
+function actualizarProgreso() {
+  // Lista de "campos clave" que cuentan para el progreso
+  const grupos = [
+    () => document.getElementById('nombreApellido').value.trim() !== '',
+    () => document.getElementById('dni').value.trim() !== '',
+    () => document.getElementById('telefono').value.trim() !== '',
+    () => document.getElementById('barrio').value !== '',
+    () => document.querySelector('input[name="edad"]:checked') !== null,
+    () => document.getElementById('queVende').value.trim() !== '',
+    () => document.querySelector('input[name="rubro"]:checked') !== null,
+    () => document.querySelector('input[name="etapa"]:checked') !== null,
+    () => document.querySelector('input[name="antiguedad"]:checked') !== null,
+    () => document.querySelectorAll('input[name="dondeVende"]:checked').length > 0,
+    () => document.querySelector('input[name="personasTrabajan"]:checked') !== null,
+    () => document.querySelector('input[name="tieneRedes"]:checked') !== null,
+    () => document.querySelector('input[name="mediosPagoDigitales"]:checked') !== null,
+    () => document.querySelector('input[name="situacionAfip"]:checked') !== null,
+    () => document.querySelectorAll('input[name="queMejorar"]:checked').length > 0,
+    () => document.querySelectorAll('input[name="interesParticipar"]:checked').length > 0,
+    () => document.querySelectorAll('input[name="disponibilidad"]:checked').length > 0,
+    () => document.getElementById('autorizacionContacto').checked
+  ];
+  const completos = grupos.filter(fn => fn()).length;
+  const pct = Math.round((completos / grupos.length) * 100);
+  progressFill.style.width = pct + '%';
+  progressPercent.textContent = pct + '%';
+}
+
+form.addEventListener('input', actualizarProgreso);
+form.addEventListener('change', actualizarProgreso);
+
+// ═══════════════════════════════════════════════════════════════════
+// VALIDACIÓN
+// ═══════════════════════════════════════════════════════════════════
+function mostrarError(name) {
+  const err = document.querySelector(`[data-error-for="${name}"]`);
+  if (err) err.classList.add('visible');
+}
+
+function ocultarError(name) {
+  const err = document.querySelector(`[data-error-for="${name}"]`);
+  if (err) err.classList.remove('visible');
+}
+
+function validarFormulario() {
+  let valido = true;
+  let primerError = null;
+
+  // Texto requerido
+  const reqText = ['nombreApellido', 'dni', 'telefono', 'queVende'];
+  reqText.forEach(name => {
+    const el = document.getElementById(name);
+    if (!el.value.trim()) {
+      mostrarError(name);
+      el.classList.add('invalid');
+      if (!primerError) primerError = el;
+      valido = false;
+    } else {
+      ocultarError(name);
+      el.classList.remove('invalid');
+    }
+  });
+
+  // DNI: 7 u 8 dígitos
+  const dni = document.getElementById('dni');
+  const dniLimpio = dni.value.replace(/\D/g, '');
+  if (dniLimpio && (dniLimpio.length < 7 || dniLimpio.length > 8)) {
+    mostrarError('dni');
+    dni.classList.add('invalid');
+    if (!primerError) primerError = dni;
+    valido = false;
+  }
+
+  // Email opcional pero si tiene algo, validar formato
+  const email = document.getElementById('email');
+  if (email.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+    mostrarError('email');
+    email.classList.add('invalid');
+    if (!primerError) primerError = email;
+    valido = false;
+  } else {
+    ocultarError('email');
+    email.classList.remove('invalid');
+  }
+
+  // Select barrio
+  const barrio = document.getElementById('barrio');
+  if (!barrio.value) {
+    mostrarError('barrio');
+    barrio.classList.add('invalid');
+    if (!primerError) primerError = barrio;
+    valido = false;
+  } else {
+    ocultarError('barrio');
+    barrio.classList.remove('invalid');
+  }
+
+  // Radios requeridos
+  const reqRadios = ['edad', 'rubro', 'etapa', 'antiguedad', 'personasTrabajan', 'tieneRedes', 'mediosPagoDigitales', 'situacionAfip'];
+  reqRadios.forEach(name => {
+    if (!document.querySelector(`input[name="${name}"]:checked`)) {
+      mostrarError(name);
+      if (!primerError) primerError = document.querySelector(`input[name="${name}"]`);
+      valido = false;
+    } else {
+      ocultarError(name);
+    }
+  });
+
+  // Checkboxes requeridos (al menos uno)
+  const reqChecks = ['dondeVende', 'queMejorar', 'interesParticipar', 'disponibilidad'];
+  reqChecks.forEach(name => {
+    if (document.querySelectorAll(`input[name="${name}"]:checked`).length === 0) {
+      mostrarError(name);
+      if (!primerError) primerError = document.querySelector(`input[name="${name}"]`);
+      valido = false;
+    } else {
+      ocultarError(name);
+    }
+  });
+
+  // Autorización
+  const autorizacion = document.getElementById('autorizacionContacto');
+  if (!autorizacion.checked) {
+    mostrarError('autorizacionContacto');
+    if (!primerError) primerError = autorizacion;
+    valido = false;
+  } else {
+    ocultarError('autorizacionContacto');
+  }
+
+  if (primerError) {
+    primerError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => primerError.focus(), 400);
+  }
+
+  return valido;
+}
+
+// Limpiar errores al editar
+form.addEventListener('input', (e) => {
+  const target = e.target;
+  if (target.name) {
+    ocultarError(target.name);
+    target.classList.remove('invalid');
+  }
+});
+form.addEventListener('change', (e) => {
+  const target = e.target;
+  if (target.name) ocultarError(target.name);
+});
+
+// ═══════════════════════════════════════════════════════════════════
+// RECOLECTAR DATOS DEL FORMULARIO
+// ═══════════════════════════════════════════════════════════════════
+function recolectarDatos() {
+  const fd = new FormData(form);
+  const datos = {
+    nombreApellido: fd.get('nombreApellido')?.trim() || '',
+    dni: fd.get('dni')?.replace(/\D/g, '') || '',
+    telefono: fd.get('telefono')?.trim() || '',
+    email: fd.get('email')?.trim() || '',
+    barrio: fd.get('barrio') || '',
+    edad: fd.get('edad') || '',
+    genero: fd.get('genero') || '',
+    nombreEmprendimiento: fd.get('nombreEmprendimiento')?.trim() || '',
+    queVende: fd.get('queVende')?.trim() || '',
+    rubro: fd.get('rubro') || '',
+    rubroOtro: fd.get('rubro') === 'Otro' ? (fd.get('rubroOtro')?.trim() || '') : '',
+    etapa: fd.get('etapa') || '',
+    antiguedad: fd.get('antiguedad') || '',
+    dondeVende: fd.getAll('dondeVende'),
+    dondeVendeOtro: fd.getAll('dondeVende').includes('Otro') ? (fd.get('dondeVendeOtro')?.trim() || '') : '',
+    personasTrabajan: fd.get('personasTrabajan') || '',
+    tieneRedes: fd.get('tieneRedes') || '',
+    cualesRedes: fd.get('tieneRedes') === 'Sí' ? (fd.get('cualesRedes')?.trim() || '') : '',
+    mediosPagoDigitales: fd.get('mediosPagoDigitales') || '',
+    situacionAfip: fd.get('situacionAfip') || '',
+    queMejorar: fd.getAll('queMejorar'),
+    queMejorarOtro: fd.getAll('queMejorar').includes('Otro') ? (fd.get('queMejorarOtro')?.trim() || '') : '',
+    interesParticipar: fd.getAll('interesParticipar'),
+    disponibilidad: fd.getAll('disponibilidad'),
+    autorizacionContacto: fd.get('autorizacionContacto') === 'on'
+  };
+  return datos;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// PREVIEW
+// ═══════════════════════════════════════════════════════════════════
+function fmt(v) {
+  if (v === null || v === undefined || v === '') return '<span class="empty">— sin completar —</span>';
+  if (Array.isArray(v)) return v.length ? v.join(', ') : '<span class="empty">— sin completar —</span>';
+  return String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function renderPreview(d) {
+  const rubroFinal = d.rubro === 'Otro' && d.rubroOtro ? `Otro: ${d.rubroOtro}` : d.rubro;
+  const dondeVendeFinal = [...d.dondeVende.filter(v => v !== 'Otro')];
+  if (d.dondeVende.includes('Otro') && d.dondeVendeOtro) dondeVendeFinal.push(`Otro: ${d.dondeVendeOtro}`);
+  const queMejorarFinal = [...d.queMejorar.filter(v => v !== 'Otro')];
+  if (d.queMejorar.includes('Otro') && d.queMejorarOtro) queMejorarFinal.push(`Otro: ${d.queMejorarOtro}`);
+
+  modalBody.innerHTML = `
+    <div class="preview-section">
+      <div class="preview-section-title">1 · Datos personales</div>
+      <div class="preview-row"><div class="preview-label">Nombre y apellido</div><div class="preview-value">${fmt(d.nombreApellido)}</div></div>
+      <div class="preview-row"><div class="preview-label">DNI</div><div class="preview-value">${fmt(d.dni)}</div></div>
+      <div class="preview-row"><div class="preview-label">Teléfono (WhatsApp)</div><div class="preview-value">${fmt(d.telefono)}</div></div>
+      <div class="preview-row"><div class="preview-label">Correo electrónico</div><div class="preview-value">${fmt(d.email)}</div></div>
+      <div class="preview-row"><div class="preview-label">Barrio</div><div class="preview-value">${fmt(d.barrio)}</div></div>
+      <div class="preview-row"><div class="preview-label">Edad</div><div class="preview-value">${fmt(d.edad)}</div></div>
+      <div class="preview-row"><div class="preview-label">Género</div><div class="preview-value">${fmt(d.genero)}</div></div>
+    </div>
+
+    <div class="preview-section">
+      <div class="preview-section-title">2 · Datos del emprendimiento</div>
+      <div class="preview-row"><div class="preview-label">Nombre del emprendimiento</div><div class="preview-value">${fmt(d.nombreEmprendimiento)}</div></div>
+      <div class="preview-row"><div class="preview-label">Qué vende u ofrece</div><div class="preview-value">${fmt(d.queVende)}</div></div>
+      <div class="preview-row"><div class="preview-label">Rubro</div><div class="preview-value">${fmt(rubroFinal)}</div></div>
+    </div>
+
+    <div class="preview-section">
+      <div class="preview-section-title">3 · Situación actual</div>
+      <div class="preview-row"><div class="preview-label">Etapa</div><div class="preview-value">${fmt(d.etapa)}</div></div>
+      <div class="preview-row"><div class="preview-label">Antigüedad</div><div class="preview-value">${fmt(d.antiguedad)}</div></div>
+      <div class="preview-row"><div class="preview-label">Dónde vende</div><div class="preview-value">${fmt(dondeVendeFinal)}</div></div>
+      <div class="preview-row"><div class="preview-label">Personas que trabajan</div><div class="preview-value">${fmt(d.personasTrabajan)}</div></div>
+    </div>
+
+    <div class="preview-section">
+      <div class="preview-section-title">4 · Canales y herramientas</div>
+      <div class="preview-row"><div class="preview-label">Tiene redes sociales</div><div class="preview-value">${fmt(d.tieneRedes)}</div></div>
+      ${d.tieneRedes === 'Sí' ? `<div class="preview-row"><div class="preview-label">Cuáles usa</div><div class="preview-value">${fmt(d.cualesRedes)}</div></div>` : ''}
+      <div class="preview-row"><div class="preview-label">Medios de pago digitales</div><div class="preview-value">${fmt(d.mediosPagoDigitales)}</div></div>
+      <div class="preview-row"><div class="preview-label">Situación AFIP</div><div class="preview-value">${fmt(d.situacionAfip)}</div></div>
+    </div>
+
+    <div class="preview-section">
+      <div class="preview-section-title">5 · Necesidades</div>
+      <div class="preview-row"><div class="preview-label">Qué quiere mejorar</div><div class="preview-value">${fmt(queMejorarFinal)}</div></div>
+    </div>
+
+    <div class="preview-section">
+      <div class="preview-section-title">6 · Participación</div>
+      <div class="preview-row"><div class="preview-label">Interés en participar</div><div class="preview-value">${fmt(d.interesParticipar)}</div></div>
+      <div class="preview-row"><div class="preview-label">Disponibilidad horaria</div><div class="preview-value">${fmt(d.disponibilidad)}</div></div>
+    </div>
+
+    <div class="preview-section">
+      <div class="preview-section-title">7 · Autorización</div>
+      <div class="preview-row"><div class="preview-label">Autorización de contacto</div><div class="preview-value">${d.autorizacionContacto ? 'Sí' : 'No'}</div></div>
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// SUBMIT — abre el modal de preview
+// ═══════════════════════════════════════════════════════════════════
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (!validarFormulario()) return;
+  const datos = recolectarDatos();
+  renderPreview(datos);
+  modalPreview.classList.add('visible');
+  modalPreview.scrollTop = 0;
+  // Re-render lucide para íconos en el modal
+  lucide.createIcons();
+  // Bloquear scroll body
+  document.body.style.overflow = 'hidden';
+});
+
+// CORREGIR — cierra modal
+btnCorregir.addEventListener('click', () => {
+  modalPreview.classList.remove('visible');
+  document.body.style.overflow = '';
+});
+
+// CONFIRMAR Y ENVIAR
+btnConfirmar.addEventListener('click', async () => {
+  const datos = recolectarDatos();
+  btnConfirmar.disabled = true;
+  btnConfirmar.innerHTML = '<span class="spinner"></span> Enviando...';
+
+  try {
+    // Apps Script Web Apps no admite fetch CORS estándar fácilmente.
+    // Usamos Content-Type: text/plain para evitar el preflight OPTIONS.
+    const resp = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(datos)
+    });
+
+    const json = await resp.json();
+
+    if (json.ok) {
+      // Cerrar modal y mostrar success
+      modalPreview.classList.remove('visible');
+      document.body.style.overflow = '';
+      form.style.display = 'none';
+      document.querySelector('.actions').style.display = 'none';
+      document.getElementById('feedbackId').textContent = 'Tu código de registro: ' + json.id;
+      feedbackSuccess.classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      throw new Error(json.error || 'Respuesta no válida del servidor');
+    }
+  } catch (err) {
+    console.error('Error al enviar:', err);
+    modalPreview.classList.remove('visible');
+    document.body.style.overflow = '';
+    form.style.display = 'none';
+    document.querySelector('.actions').style.display = 'none';
+    document.getElementById('errorMessage').textContent = 'Hubo un problema al guardar tus datos: ' + err.message + '. Por favor probá de nuevo en unos minutos o contactanos por WhatsApp.';
+    feedbackError.classList.add('visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } finally {
+    btnConfirmar.disabled = false;
+    btnConfirmar.innerHTML = '<i data-lucide="send"></i> Confirmar y enviar';
+    lucide.createIcons();
+  }
+});
+
+// Cerrar modal al hacer click fuera
+modalPreview.addEventListener('click', (e) => {
+  if (e.target === modalPreview) {
+    modalPreview.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+});
+
+// Inicializar progreso
+actualizarProgreso();
+</script>
+
+</body>
+</html>
