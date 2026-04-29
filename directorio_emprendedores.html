@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Directorio de Emprendedores · Municipalidad de Esquina</title>
+<meta name="description" content="Conocé los emprendimientos de Esquina. Comprá local, apoyá a las y los emprendedores de tu ciudad.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+<style>
+/* ═══════════════════════════════════════════════════
+   TOKENS — Sistema de diseño CEM Esquina
+   ═══════════════════════════════════════════════════ */
+:root {
+  --azul-50:  #e8eef5;
+  --azul-100: #c5d5e8;
+  --azul-200: #92b3d6;
+  --azul-300: #5e90c4;
+  --azul-500: #2872b1;
+  --azul-600: #166aa8;
+  --azul-700: #0e5a9e;
+  --azul-800: #0a3a68;
+  --azul-900: #07294a;
+
+  --ocre-100: #f3e6c9;
+  --ocre-300: #d6ae6f;
+  --ocre-500: #b8863d;
+  --ocre-700: #8a632b;
+
+  --papel:   #f8f5ee;
+  --papel-2: #eee6d5;
+  --tinta:   #171614;
+  --tinta-2: #4a4742;
+  --tinta-3: #7a766f;
+  --borde:   #e0d9c8;
+  --borde-2: #d0c8b3;
+  --blanco:  #ffffff;
+
+  --verde:   #2f7d32;
+  --rojo:    #a8322c;
+
+  --font-sans:  'IBM Plex Sans', system-ui, sans-serif;
+  --font-serif: 'IBM Plex Serif', Georgia, serif;
+  --font-mono:  'IBM Plex Mono', monospace;
+
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-pill: 999px;
+
+  --sh-1: 0 1px 2px rgba(15,23,42,.04), 0 1px 1px rgba(15,23,42,.06);
+  --sh-2: 0 4px 12px rgba(15,23,42,.08);
+  --sh-3: 0 8px 24px rgba(15,23,42,.1);
+
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ═══════════════════════════════════════════════════
+   RESET Y BASE
+   ═══════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--tinta);
+  background: var(--papel);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════ */
+.header {
+  background: linear-gradient(135deg, var(--azul-800) 0%, var(--azul-700) 100%);
+  border-bottom: 4px solid var(--ocre-500);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg, transparent, transparent 24px,
+    rgba(184,134,61,.07) 24px, rgba(184,134,61,.07) 25px
+  );
+  pointer-events: none;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 48px 40px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.header-text .kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ocre-300);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.header-text .kicker .lucide { width: 13px; height: 13px; }
+
+.header-text h1 {
+  font-family: var(--font-serif);
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -.01em;
+  margin-bottom: 10px;
+}
+
+.header-text p {
+  font-size: 16px;
+  color: var(--azul-100);
+  max-width: 560px;
+  line-height: 1.55;
+}
+
+.header-stats {
+  display: flex;
+  gap: 24px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--r-md);
+  padding: 14px 20px;
+  text-align: center;
+  min-width: 90px;
+  backdrop-filter: blur(4px);
+}
+
+.stat-num {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum';
+  font-size: 28px;
+  font-weight: 500;
+  color: white;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--azul-100);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+/* Aviso vacío en stats */
+.stat-num.loading {
+  font-size: 18px;
+  opacity: .5;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:.5} 50%{opacity:1} }
+
+/* ═══════════════════════════════════════════════════
+   BARRA DE FILTROS
+   ═══════════════════════════════════════════════════ */
+.filtros-bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(248,245,238,.94);
+  backdrop-filter: saturate(180%) blur(8px);
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid var(--borde);
+  box-shadow: var(--sh-1);
+}
+
+.filtros-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 48px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filtro-search {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+  max-width: 320px;
+}
+
+.filtro-search .lucide {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--tinta-3);
+  pointer-events: none;
+}
+
+.filtro-search input {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  width: 100%;
+  padding: 9px 12px 9px 34px;
+  border: 1px solid var(--borde-2);
+  border-radius: var(--r-sm);
+  background: white;
+  color: var(--tinta);
+  transition: border-color 150ms var(--ease), box-shadow 150ms var(--ease);
+}
+
+.filtro-search input:focus {
+  outline: none;
+  border-color: var(--azul-700);
+  box-shadow: 0 0 0 3px rgba(14,90,158,.14);
+}
+
+.filtro-search input::placeholder { color: var(--tinta-3); }
+
+.filtro-select {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  padding: 9px 30px 9px 12px;
+  border: 1px solid var(--borde-2);
+  border-radius: var(--r-sm);
+  background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237a766f' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: var(--tinta);
+  cursor: pointer;
+  transition: border-color 150ms var(--ease);
+  min-width: 160px;
+}
+
+.filtro-select:focus {
+  outline: none;
+  border-color: var(--azul-700);
+  box-shadow: 0 0 0 3px rgba(14,90,158,.14);
+}
+
+.filtros-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--borde-2);
+  flex-shrink: 0;
+}
+
+.btn-limpiar {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--tinta-3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 150ms, background 150ms;
+  white-space: nowrap;
+}
+
+.btn-limpiar:hover { color: var(--tinta); background: var(--papel-2); }
+.btn-limpiar .lucide { width: 14px; height: 14px; }
+
+.filtros-resultado {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum';
+  font-size: 12px;
+  color: var(--tinta-3);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════
+   MAIN / GRILLA
+   ═══════════════════════════════════════════════════ */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 48px 80px;
+}
+
+/* Estado de carga */
+.estado {
+  text-align: center;
+  padding: 80px 24px;
+  display: none;
+}
+
+.estado.visible { display: block; }
+
+.estado-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  background: var(--azul-50);
+  color: var(--azul-700);
+}
+
+.estado-icon .lucide { width: 26px; height: 26px; }
+
+.estado h3 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--azul-800);
+  margin-bottom: 8px;
+}
+
+.estado p {
+  color: var(--tinta-3);
+  font-size: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Spinner */
+.spinner-ring {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--azul-100);
+  border-top-color: var(--azul-700);
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Grilla de cards */
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* ═══════════════════════════════════════════════════
+   CARD DE EMPRENDEDOR
+   ═══════════════════════════════════════════════════ */
+.card {
+  background: white;
+  border: 1px solid var(--borde);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow 220ms var(--ease), transform 220ms var(--ease), border-color 220ms var(--ease);
+  animation: fadeUp 320ms var(--ease) both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card:hover {
+  box-shadow: var(--sh-3);
+  border-color: var(--azul-200);
+  transform: translateY(-2px);
+}
+
+/* Franja de color por rubro */
+.card-franja {
+  height: 4px;
+  flex-shrink: 0;
+}
+
+.card-body {
+  padding: 20px 22px 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-rubro-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.card-etapa-badge {
+  font-size: 11px;
+  color: var(--tinta-3);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-etapa-badge .lucide { width: 12px; height: 12px; }
+
+.card-nombre {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--azul-800);
+  letter-spacing: -.005em;
+}
+
+.card-ofrece {
+  font-size: 14px;
+  color: var(--tinta-2);
+  line-height: 1.55;
+  /* Limitar a 3 líneas */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid var(--borde);
+}
+
+.card-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--tinta-3);
+}
+
+.card-meta-item .lucide { width: 13px; height: 13px; }
+
+.card-pago {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--verde);
+  background: rgba(47,125,50,.08);
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+}
+
+.card-pago .lucide { width: 11px; height: 11px; }
+
+/* Footer de la card con el botón de contacto */
+.card-footer {
+  padding: 12px 22px 14px;
+  border-top: 1px solid var(--borde);
+  background: var(--papel);
+}
+
+.btn-wsp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 10px 16px;
+  background: var(--azul-700);
+  color: white;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 150ms var(--ease), transform 120ms var(--ease), box-shadow 150ms var(--ease);
+}
+
+.btn-wsp:hover {
+  background: var(--azul-800);
+  transform: translateY(-1px);
+  box-shadow: var(--sh-2);
+}
+
+.btn-wsp:active { transform: translateY(0); }
+
+.btn-wsp .lucide { width: 15px; height: 15px; }
+
+/* Redes sociales — icono pequeño si las tiene */
+.card-redes {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--tinta-3);
+}
+
+.card-redes .lucide { width: 13px; height: 13px; }
+
+/* ═══════════════════════════════════════════════════
+   COLORES POR RUBRO
+   ═══════════════════════════════════════════════════ */
+/* Franja + badge por rubro */
+[data-rubro="Alimentos y bebidas"]     .card-franja { background: #d97706; }
+[data-rubro="Textil / indumentaria"]   .card-franja { background: #7c3aed; }
+[data-rubro="Artesanías"]              .card-franja { background: var(--ocre-500); }
+[data-rubro="Servicios"]               .card-franja { background: #0891b2; }
+[data-rubro="Belleza / estética"]      .card-franja { background: #db2777; }
+[data-rubro="Tecnología / digital"]    .card-franja { background: #16a34a; }
+[data-rubro="Construcción / mantenimiento"] .card-franja { background: #64748b; }
+[data-rubro="Otro"]                    .card-franja { background: var(--tinta-3); }
+
+[data-rubro="Alimentos y bebidas"]     .card-rubro-badge { background: #fef3c7; color: #92400e; }
+[data-rubro="Textil / indumentaria"]   .card-rubro-badge { background: #ede9fe; color: #5b21b6; }
+[data-rubro="Artesanías"]              .card-rubro-badge { background: var(--ocre-100); color: var(--ocre-700); }
+[data-rubro="Servicios"]               .card-rubro-badge { background: #e0f2fe; color: #0c4a6e; }
+[data-rubro="Belleza / estética"]      .card-rubro-badge { background: #fce7f3; color: #9d174d; }
+[data-rubro="Tecnología / digital"]    .card-rubro-badge { background: #dcfce7; color: #14532d; }
+[data-rubro="Construcción / mantenimiento"] .card-rubro-badge { background: #f1f5f9; color: #475569; }
+[data-rubro="Otro"]                    .card-rubro-badge { background: var(--papel-2); color: var(--tinta-3); }
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════ */
+.footer {
+  text-align: center;
+  padding: 32px 24px;
+  border-top: 1px solid var(--borde);
+  background: var(--papel-2);
+}
+
+.footer-line {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ocre-700);
+  margin-bottom: 4px;
+}
+
+.footer-sub {
+  font-size: 13px;
+  color: var(--tinta-3);
+  margin-bottom: 16px;
+}
+
+.btn-registrate {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 22px;
+  background: var(--azul-700);
+  color: white;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  transition: background 150ms;
+}
+
+.btn-registrate:hover { background: var(--azul-800); }
+.btn-registrate .lucide { width: 15px; height: 15px; }
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .header-inner { padding: 32px 20px 28px; flex-direction: column; align-items: flex-start; }
+  .header-text h1 { font-size: 30px; }
+  .header-stats { gap: 12px; }
+  .stat-box { padding: 10px 14px; min-width: 70px; }
+  .stat-num { font-size: 22px; }
+  .filtros-inner { padding: 10px 20px; }
+  .filtro-search { max-width: 100%; }
+  .filtro-select { min-width: 0; flex: 1; }
+  .filtros-resultado { display: none; }
+  main { padding: 24px 16px 60px; }
+  .grilla { grid-template-columns: 1fr; gap: 14px; }
+}
+
+@media (max-width: 480px) {
+  .filtros-divider { display: none; }
+  .btn-limpiar span { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HEADER
+     ══════════════════════════════════════════ -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-text">
+      <div class="kicker">
+        <i data-lucide="landmark"></i>
+        Municipalidad de Esquina · Área de Emprendedores
+      </div>
+      <h1>Directorio de emprendedores</h1>
+      <p>Conocé los emprendimientos de Esquina. Encontrá lo que necesitás y apoyá a quienes producen en tu ciudad.</p>
+    </div>
+    <div class="header-stats">
+      <div class="stat-box">
+        <div class="stat-num loading" id="statTotal">—</div>
+        <div class="stat-label">Emprendimientos</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num loading" id="statRubros">—</div>
+        <div class="stat-label">Rubros</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num loading" id="statBarrios">—</div>
+        <div class="stat-label">Barrios</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     FILTROS
+     ══════════════════════════════════════════ -->
+<div class="filtros-bar">
+  <div class="filtros-inner">
+    <div class="filtro-search">
+      <i data-lucide="search"></i>
+      <input type="text" id="busqueda" placeholder="Buscar emprendimiento..." autocomplete="off">
+    </div>
+
+    <div class="filtros-divider"></div>
+
+    <select class="filtro-select" id="filtroRubro">
+      <option value="">Todos los rubros</option>
+      <option>Alimentos y bebidas</option>
+      <option>Textil / indumentaria</option>
+      <option>Artesanías</option>
+      <option>Servicios</option>
+      <option>Belleza / estética</option>
+      <option>Tecnología / digital</option>
+      <option>Construcción / mantenimiento</option>
+      <option>Otro</option>
+    </select>
+
+    <select class="filtro-select" id="filtroBarrio">
+      <option value="">Todos los barrios</option>
+    </select>
+
+    <select class="filtro-select" id="filtroEtapa">
+      <option value="">Todas las etapas</option>
+      <option>Estoy empezando</option>
+      <option>Ya vendo, pero quiero mejorar</option>
+      <option>Ya estoy más consolidado/a</option>
+    </select>
+
+    <select class="filtro-select" id="filtroPago">
+      <option value="">Cualquier pago</option>
+      <option value="Sí">Acepta pago digital</option>
+      <option value="No">Solo efectivo</option>
+    </select>
+
+    <button class="btn-limpiar" id="btnLimpiar" onclick="limpiarFiltros()">
+      <i data-lucide="x"></i>
+      <span>Limpiar</span>
+    </button>
+
+    <div class="filtros-resultado" id="filtrosResultado">— emprendimientos</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MAIN
+     ══════════════════════════════════════════ -->
+<main>
+
+  <!-- Cargando -->
+  <div class="estado visible" id="estadoCargando">
+    <div class="spinner-ring"></div>
+    <h3>Cargando el directorio</h3>
+    <p>Buscando emprendimientos registrados...</p>
+  </div>
+
+  <!-- Error -->
+  <div class="estado" id="estadoError">
+    <div class="estado-icon" style="background: rgba(168,50,44,.1); color: var(--rojo);">
+      <i data-lucide="wifi-off"></i>
+    </div>
+    <h3>No pudimos cargar el directorio</h3>
+    <p id="errorMsg">Verificá tu conexión y volvé a intentarlo.</p>
+    <button onclick="cargarDatos()" style="margin-top:16px; font-family:var(--font-sans); font-size:14px; font-weight:500; padding:10px 20px; background:var(--azul-700); color:white; border:none; border-radius:var(--r-sm); cursor:pointer;">
+      Reintentar
+    </button>
+  </div>
+
+  <!-- Sin resultados (filtros) -->
+  <div class="estado" id="estadoVacio">
+    <div class="estado-icon">
+      <i data-lucide="search-x"></i>
+    </div>
+    <h3>Sin resultados</h3>
+    <p>No hay emprendimientos que coincidan con los filtros seleccionados.</p>
+    <button onclick="limpiarFiltros()" style="margin-top:16px; font-family:var(--font-sans); font-size:14px; font-weight:500; padding:10px 20px; background:var(--azul-700); color:white; border:none; border-radius:var(--r-sm); cursor:pointer;">
+      Ver todos
+    </button>
+  </div>
+
+  <!-- Sin datos (directorio vacío) -->
+  <div class="estado" id="estadoSinDatos">
+    <div class="estado-icon">
+      <i data-lucide="store"></i>
+    </div>
+    <h3>El directorio está en construcción</h3>
+    <p>Todavía no hay emprendimientos publicados. ¡Sé el primero en registrarte!</p>
+    <a href="registro_emprendedores.html" style="display:inline-flex; align-items:center; gap:7px; margin-top:16px; font-family:var(--font-sans); font-size:14px; font-weight:500; padding:10px 22px; background:var(--azul-700); color:white; border-radius:var(--r-sm); text-decoration:none;">
+      <i data-lucide="arrow-right"></i> Registrarte ahora
+    </a>
+  </div>
+
+  <!-- Grilla -->
+  <div class="grilla" id="grilla"></div>
+
+</main>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-line">Centro Estadístico Municipal · Planificación Estratégica</div>
+  <div class="footer-sub">Municipalidad de Esquina · Corrientes</div>
+  <a href="registro_emprendedores.html" class="btn-registrate">
+    <i data-lucide="plus-circle"></i>
+    Registrá tu emprendimiento
+  </a>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     LÓGICA
+     ══════════════════════════════════════════ -->
+<script>
+lucide.createIcons();
+
+// ─────────────────────────────────────────────
+// CONFIG
+// ─────────────────────────────────────────────
+const ENDPOINT = 'https://script.google.com/macros/s/AKfycbzCEYR_StuT10CZU66Wutq1_XM6o-2eOdjjxKMCYNBer9d5JjFQtJIFU3YnRLt2TWEQjw/exec?accion=directorio';
+
+// ─────────────────────────────────────────────
+// ESTADO
+// ─────────────────────────────────────────────
+let DATOS = [];      // todos los registros del endpoint
+let FILTRADOS = [];  // resultado después de aplicar filtros
+
+// ─────────────────────────────────────────────
+// HELPERS DE RUBRO — franja y etiqueta de color
+// ─────────────────────────────────────────────
+const RUBRO_LABELS = {
+  'Alimentos y bebidas':           'Alimentos',
+  'Textil / indumentaria':         'Textil',
+  'Artesanías':                    'Artesanías',
+  'Servicios':                     'Servicios',
+  'Belleza / estética':            'Belleza',
+  'Tecnología / digital':          'Tecnología',
+  'Construcción / mantenimiento':  'Construcción',
+  'Otro':                          'Otro',
+};
+
+function rubroKey(rubro) {
+  if (!rubro) return 'Otro';
+  const base = rubro.split(':')[0].trim();
+  return RUBRO_LABELS[base] !== undefined ? base : 'Otro';
+}
+
+function etapaIcono(etapa) {
+  if (!etapa) return '';
+  if (etapa.includes('empezando'))     return '<i data-lucide="sprout"></i>';
+  if (etapa.includes('vendo'))         return '<i data-lucide="trending-up"></i>';
+  if (etapa.includes('consolidado'))   return '<i data-lucide="award"></i>';
+  return '';
+}
+
+function etapaLabel(etapa) {
+  if (!etapa) return '';
+  if (etapa.includes('empezando'))     return 'Empezando';
+  if (etapa.includes('vendo'))         return 'En crecimiento';
+  if (etapa.includes('consolidado'))   return 'Consolidado/a';
+  return etapa;
+}
+
+// ─────────────────────────────────────────────
+// CONSTRUIR CARD
+// ─────────────────────────────────────────────
+function buildCard(e, delay) {
+  const rubro = rubroKey(e.rubro || e.rubroOtro);
+  const nombre = e.emprendimiento || '(Sin nombre)';
+  const ofrece = e.ofrece || '';
+  const barrio = e.barrio || '';
+  const etapa = e.etapa || '';
+  const wsp = e.whatsapp || '';
+  const redes = e.redes || '';
+  const pago = e.mediosPagoDigitales === 'Sí';
+
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.rubro = rubro;
+  card.style.animationDelay = delay + 'ms';
+
+  // Mensaje prearmado para WhatsApp
+  const wspMsg = encodeURIComponent(`Hola! Te encontré en el Directorio de Emprendedores de Esquina. Me gustaría saber más sobre ${nombre}.`);
+  const wspUrl = wsp ? `https://wa.me/${wsp}?text=${wspMsg}` : '#';
+
+  card.innerHTML = `
+    <div class="card-franja"></div>
+    <div class="card-body">
+      <div class="card-top">
+        <span class="card-rubro-badge">${RUBRO_LABELS[rubro] || 'Otro'}</span>
+        ${etapa ? `<span class="card-etapa-badge">${etapaIcono(etapa)} ${etapaLabel(etapa)}</span>` : ''}
+      </div>
+      <div class="card-nombre">${escHtml(nombre)}</div>
+      ${ofrece ? `<div class="card-ofrece">${escHtml(ofrece)}</div>` : ''}
+      <div class="card-meta">
+        ${barrio ? `<div class="card-meta-item"><i data-lucide="map-pin"></i> ${escHtml(barrio)}</div>` : ''}
+        ${pago ? `<div class="card-pago"><i data-lucide="credit-card"></i> Pago digital</div>` : ''}
+      </div>
+    </div>
+    <div class="card-footer">
+      ${wsp
+        ? `<a class="btn-wsp" href="${wspUrl}" target="_blank" rel="noopener">
+             <i data-lucide="message-circle"></i> Contactar por WhatsApp
+           </a>`
+        : `<div style="font-size:13px; color:var(--tinta-3); text-align:center; padding:4px 0;">Sin contacto disponible</div>`
+      }
+      ${redes ? `<div class="card-redes"><i data-lucide="share-2"></i> ${escHtml(redes)}</div>` : ''}
+    </div>
+  `;
+
+  return card;
+}
+
+function escHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// ─────────────────────────────────────────────
+// RENDER
+// ─────────────────────────────────────────────
+function mostrarEstado(id) {
+  ['estadoCargando','estadoError','estadoVacio','estadoSinDatos'].forEach(s => {
+    document.getElementById(s).classList.remove('visible');
+  });
+  if (id) document.getElementById(id).classList.add('visible');
+}
+
+function renderGrilla(lista) {
+  const grilla = document.getElementById('grilla');
+  grilla.innerHTML = '';
+
+  if (lista.length === 0) {
+    mostrarEstado(DATOS.length === 0 ? 'estadoSinDatos' : 'estadoVacio');
+    document.getElementById('filtrosResultado').textContent = '0 emprendimientos';
+    return;
+  }
+
+  mostrarEstado(null); // ocultar todos los estados
+
+  lista.forEach((e, i) => {
+    const card = buildCard(e, i * 40);
+    grilla.appendChild(card);
+  });
+
+  lucide.createIcons();
+  document.getElementById('filtrosResultado').textContent =
+    lista.length === 1 ? '1 emprendimiento' : `${lista.length} emprendimientos`;
+}
+
+// ─────────────────────────────────────────────
+// STATS en el header
+// ─────────────────────────────────────────────
+function actualizarStats(datos) {
+  const rubrosUnicos = new Set(datos.map(d => rubroKey(d.rubro || d.rubroOtro))).size;
+  const barriosUnicos = new Set(datos.map(d => d.barrio).filter(Boolean)).size;
+
+  document.getElementById('statTotal').textContent = datos.length;
+  document.getElementById('statRubros').textContent = rubrosUnicos;
+  document.getElementById('statBarrios').textContent = barriosUnicos;
+
+  ['statTotal','statRubros','statBarrios'].forEach(id => {
+    document.getElementById(id).classList.remove('loading');
+  });
+}
+
+// ─────────────────────────────────────────────
+// POBLAR FILTRO DE BARRIOS con los barrios reales del dataset
+// ─────────────────────────────────────────────
+function poblarFiltroBarrios(datos) {
+  const barrios = [...new Set(datos.map(d => d.barrio).filter(Boolean))].sort();
+  const sel = document.getElementById('filtroBarrio');
+  barrios.forEach(b => {
+    const opt = document.createElement('option');
+    opt.value = b;
+    opt.textContent = b;
+    sel.appendChild(opt);
+  });
+}
+
+// ─────────────────────────────────────────────
+// FILTRAR
+// ─────────────────────────────────────────────
+function aplicarFiltros() {
+  const busq   = document.getElementById('busqueda').value.trim().toLowerCase();
+  const rubro  = document.getElementById('filtroRubro').value;
+  const barrio = document.getElementById('filtroBarrio').value;
+  const etapa  = document.getElementById('filtroEtapa').value;
+  const pago   = document.getElementById('filtroPago').value;
+
+  FILTRADOS = DATOS.filter(e => {
+    // Búsqueda libre en nombre + ofrece
+    if (busq) {
+      const haystack = `${e.emprendimiento} ${e.ofrece} ${e.rubro} ${e.barrio}`.toLowerCase();
+      if (!haystack.includes(busq)) return false;
+    }
+    // Rubro
+    if (rubro && rubroKey(e.rubro || e.rubroOtro) !== rubro) return false;
+    // Barrio
+    if (barrio && e.barrio !== barrio) return false;
+    // Etapa
+    if (etapa && e.etapa !== etapa) return false;
+    // Pago digital
+    if (pago && e.mediosPagoDigitales !== pago) return false;
+    return true;
+  });
+
+  renderGrilla(FILTRADOS);
+}
+
+function limpiarFiltros() {
+  document.getElementById('busqueda').value = '';
+  document.getElementById('filtroRubro').value = '';
+  document.getElementById('filtroBarrio').value = '';
+  document.getElementById('filtroEtapa').value = '';
+  document.getElementById('filtroPago').value = '';
+  FILTRADOS = [...DATOS];
+  renderGrilla(FILTRADOS);
+}
+
+// ─────────────────────────────────────────────
+// FETCH
+// ─────────────────────────────────────────────
+async function cargarDatos() {
+  mostrarEstado('estadoCargando');
+  document.getElementById('grilla').innerHTML = '';
+
+  try {
+    const resp = await fetch(ENDPOINT);
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const json = await resp.json();
+
+    if (!json.ok) throw new Error(json.error || 'Respuesta inválida');
+
+    DATOS = json.data || [];
+    FILTRADOS = [...DATOS];
+
+    actualizarStats(DATOS);
+    poblarFiltroBarrios(DATOS);
+    renderGrilla(FILTRADOS);
+
+  } catch (err) {
+    console.error('Error al cargar directorio:', err);
+    mostrarEstado('estadoError');
+    document.getElementById('errorMsg').textContent =
+      `No pudimos cargar los datos: ${err.message}. Verificá tu conexión o intentá más tarde.`;
+  }
+}
+
+// ─────────────────────────────────────────────
+// EVENTOS
+// ─────────────────────────────────────────────
+document.getElementById('busqueda').addEventListener('input', aplicarFiltros);
+document.getElementById('filtroRubro').addEventListener('change', aplicarFiltros);
+document.getElementById('filtroBarrio').addEventListener('change', aplicarFiltros);
+document.getElementById('filtroEtapa').addEventListener('change', aplicarFiltros);
+document.getElementById('filtroPago').addEventListener('change', aplicarFiltros);
+
+// ─────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────
+cargarDatos();
+</script>
+</body>
+</html>
