@@ -1006,6 +1006,16 @@ main {
       </div>
 
       <div class="field">
+        <label>¿El emprendimiento funciona en tu domicilio o en otro lugar? <span class="req">*</span></label>
+        <div class="field-help">Importante para distinguir emprendimientos domiciliarios de los que tienen local propio.</div>
+        <div class="options inline">
+          <label class="option"><input type="radio" name="funcionaEnDomicilio" value="Sí, en mi domicilio" required><span class="option-text">Sí, en mi domicilio</span></label>
+          <label class="option"><input type="radio" name="funcionaEnDomicilio" value="No, en otro lugar"><span class="option-text">No, en otro lugar</span></label>
+        </div>
+        <div class="field-error" data-error-for="funcionaEnDomicilio"><i data-lucide="alert-circle"></i> Elegí una opción.</div>
+      </div>
+
+      <div class="field">
         <label>¿Dónde vendés actualmente? <span class="req">*</span></label>
         <div class="field-help">Podés marcar más de una opción.</div>
         <div class="options">
@@ -1020,6 +1030,31 @@ main {
         <div class="field-error" data-error-for="dondeVende"><i data-lucide="alert-circle"></i> Marcá al menos una opción.</div>
       </div>
 
+      <!-- CONDICIONAL: tipo de local y dirección — aparece si marca "Local propio" O "Desde mi casa" -->
+      <div class="conditional" id="tipoLocal-section">
+        <div class="field">
+          <label>¿Qué tipo de local es?</label>
+          <div class="field-help">Profundizá sobre dónde funciona tu emprendimiento.</div>
+          <div class="options">
+            <label class="option"><input type="radio" name="tipoLocal" value="Calle tradicional"><span class="option-text">Calle tradicional</span></label>
+            <label class="option"><input type="radio" name="tipoLocal" value="Showroom"><span class="option-text">Showroom</span></label>
+            <label class="option"><input type="radio" name="tipoLocal" value="Taller"><span class="option-text">Taller</span></label>
+            <label class="option"><input type="radio" name="tipoLocal" value="Oficina"><span class="option-text">Oficina</span></label>
+            <label class="option"><input type="radio" name="tipoLocal" value="Otro" data-toggle="tipoLocalOtro"><span class="option-text">Otro (especificar)</span></label>
+          </div>
+          <input type="text" id="tipoLocalOtro" name="tipoLocalOtro" class="otro-input" placeholder="Especificá el tipo de local">
+        </div>
+      </div>
+
+      <!-- CONDICIONAL: dirección — aparece si marca "Local propio" O "Desde mi casa" -->
+      <div class="conditional" id="direccion-section">
+        <div class="field">
+          <label for="direccion">Dirección del emprendimiento</label>
+          <div class="field-help">Calle, número y referencias útiles. Se mostrará en el directorio público.</div>
+          <input type="text" id="direccion" name="direccion" placeholder="Ej: Av. Mitre 1520, casi Gral. Paz">
+        </div>
+      </div>
+
       <div class="field">
         <label>¿Cuántas personas trabajan en tu emprendimiento? <span class="req">*</span></label>
         <div class="options">
@@ -1028,6 +1063,51 @@ main {
           <label class="option"><input type="radio" name="personasTrabajan" value="Con empleados o socios"><span class="option-text">Con empleados o socios</span></label>
         </div>
         <div class="field-error" data-error-for="personasTrabajan"><i data-lucide="alert-circle"></i> Elegí una opción.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ SECCIÓN 3.5 — REGULARIZACIÓN ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">3.5</div>
+      <h2 class="section-title">Regularización</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="field">
+        <label>¿Tenés habilitación municipal? <span class="req">*</span></label>
+        <div class="field-help">Te ayuda a cruzar con el área de comercio e identificar si necesitás regularización.</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="habilitacionMunicipal" value="Sí" required><span class="option-text">Sí</span></label>
+          <label class="option"><input type="radio" name="habilitacionMunicipal" value="No"><span class="option-text">No</span></label>
+          <label class="option"><input type="radio" name="habilitacionMunicipal" value="No sabía que necesitaba"><span class="option-text">No sabía que necesitaba</span></label>
+        </div>
+        <div class="field-error" data-error-for="habilitacionMunicipal"><i data-lucide="alert-circle"></i> Elegí una opción.</div>
+      </div>
+
+      <div class="field">
+        <label>¿Tenés forma de facturar o estás inscripto/a en AFIP? <span class="req">*</span></label>
+        <div class="field-help">Nos ayuda a orientarte hacia los programas que mejor se adapten a tu situación.</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="situacionAfip" value="No, todavía no" required><span class="option-text">No, todavía no</span></label>
+          <label class="option"><input type="radio" name="situacionAfip" value="Estoy en proceso de inscribirme"><span class="option-text">Estoy en proceso de inscribirme</span></label>
+          <label class="option"><input type="radio" name="situacionAfip" value="Sí, soy monotributista"><span class="option-text">Sí, soy monotributista</span></label>
+          <label class="option"><input type="radio" name="situacionAfip" value="Sí, responsable inscripto/a"><span class="option-text">Sí, responsable inscripto/a</span></label>
+        </div>
+        <div class="field-error" data-error-for="situacionAfip"><i data-lucide="alert-circle"></i> Elegí una opción.</div>
+      </div>
+
+      <div class="field">
+        <label>¿Tu emprendimiento es tu principal fuente de ingresos? <span class="req">*</span></label>
+        <div class="field-help">Dato clave para entender tu perfil real y priorizar apoyo.</div>
+        <div class="options inline">
+          <label class="option"><input type="radio" name="principalIngreso" value="Sí, es mi único ingreso" required><span class="option-text">Sí, es mi único ingreso</span></label>
+          <label class="option"><input type="radio" name="principalIngreso" value="Sí, pero tengo otro trabajo"><span class="option-text">Sí, pero tengo otro trabajo</span></label>
+          <label class="option"><input type="radio" name="principalIngreso" value="No, es complementario"><span class="option-text">No, es complementario</span></label>
+        </div>
+        <div class="field-error" data-error-for="principalIngreso"><i data-lucide="alert-circle"></i> Elegí una opción.</div>
       </div>
 
     </div>
@@ -1068,18 +1148,6 @@ main {
         <div class="field-error" data-error-for="mediosPagoDigitales"><i data-lucide="alert-circle"></i> Elegí una opción.</div>
       </div>
 
-      <div class="field">
-        <label>¿Tenés forma de facturar o estás inscripto/a en AFIP? <span class="req">*</span></label>
-        <div class="field-help">Esto nos ayuda a orientarte hacia los programas que mejor se adapten a tu situación.</div>
-        <div class="options">
-          <label class="option"><input type="radio" name="situacionAfip" value="No, todavía no" required><span class="option-text">No, todavía no</span></label>
-          <label class="option"><input type="radio" name="situacionAfip" value="Estoy en proceso de inscribirme"><span class="option-text">Estoy en proceso de inscribirme</span></label>
-          <label class="option"><input type="radio" name="situacionAfip" value="Sí, soy monotributista"><span class="option-text">Sí, soy monotributista</span></label>
-          <label class="option"><input type="radio" name="situacionAfip" value="Sí, responsable inscripto/a"><span class="option-text">Sí, responsable inscripto/a</span></label>
-        </div>
-        <div class="field-error" data-error-for="situacionAfip"><i data-lucide="alert-circle"></i> Elegí una opción.</div>
-      </div>
-
     </div>
   </section>
 
@@ -1112,10 +1180,10 @@ main {
     </div>
   </section>
 
-  <!-- ═══════════ SECCIÓN 6 — PARTICIPACIÓN ═══════════ -->
+  <!-- ═══════════ SECCIÓN 7 — PARTICIPACIÓN ═══════════ -->
   <section class="section">
     <div class="section-header">
-      <div class="section-num">6</div>
+      <div class="section-num">7</div>
       <h2 class="section-title">Participación</h2>
     </div>
     <div class="section-body">
@@ -1146,10 +1214,34 @@ main {
     </div>
   </section>
 
-  <!-- ═══════════ SECCIÓN 7 — AUTORIZACIÓN ═══════════ -->
+  <!-- ═══════════ SECCIÓN 8 — TRAYECTORIA ═══════════ -->
   <section class="section">
     <div class="section-header">
-      <div class="section-num">7</div>
+      <div class="section-num">8</div>
+      <h2 class="section-title">Trayectoria</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="field">
+        <label>¿Ya participaste de alguna capacitación o programa de apoyo antes? <span class="req">*</span></label>
+        <div class="field-help">Nos ayuda a evitar ofrecer lo mismo dos veces y a medir el alcance previo.</div>
+        <div class="options">
+          <label class="option"><input type="checkbox" name="capacitacionPrevia" value="Municipal"><span class="option-text">Municipal</span></label>
+          <label class="option"><input type="checkbox" name="capacitacionPrevia" value="Provincial"><span class="option-text">Provincial</span></label>
+          <label class="option"><input type="checkbox" name="capacitacionPrevia" value="Nacional"><span class="option-text">Nacional</span></label>
+          <label class="option"><input type="checkbox" name="capacitacionPrevia" value="Privado"><span class="option-text">Privado</span></label>
+          <label class="option"><input type="checkbox" name="capacitacionPrevia" value="Ninguno"><span class="option-text">Ninguno</span></label>
+        </div>
+        <div class="field-error" data-error-for="capacitacionPrevia"><i data-lucide="alert-circle"></i> Marcá al menos una opción.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ SECCIÓN 9 — AUTORIZACIÓN ═══════════ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">9</div>
       <h2 class="section-title">Autorización</h2>
     </div>
     <div class="section-body">
@@ -1318,6 +1410,42 @@ document.querySelectorAll('input[name="tieneRedes"]').forEach(r => {
   });
 });
 
+// LÓGICA CONDICIONAL — tipo de local y dirección (granular)
+// ═══════════════════════════════════════════════════════════════════
+// "Desde mi casa" → solo Dirección
+// "Local propio" → Tipo de local + Dirección
+function actualizarCondicionales() {
+  const dondeVende = Array.from(document.querySelectorAll('input[name="dondeVende"]:checked'))
+    .map(cb => cb.value);
+
+  const tipoLocalSection = document.getElementById('tipoLocal-section');
+  const direccionSection = document.getElementById('direccion-section');
+
+  const tieneLocalPropio = dondeVende.includes('Local propio');
+  const tieneDomicilio = dondeVende.includes('Desde mi casa');
+
+  // Tipo de local: solo si tiene Local propio
+  if (tieneLocalPropio) {
+    tipoLocalSection.classList.add('visible');
+  } else {
+    tipoLocalSection.classList.remove('visible');
+    document.querySelectorAll('input[name="tipoLocal"]').forEach(r => r.checked = false);
+    document.getElementById('tipoLocalOtro').value = '';
+  }
+
+  // Dirección: si tiene Local propio O Domicilio
+  if (tieneLocalPropio || tieneDomicilio) {
+    direccionSection.classList.add('visible');
+  } else {
+    direccionSection.classList.remove('visible');
+    document.getElementById('direccion').value = '';
+  }
+}
+
+document.querySelectorAll('input[name="dondeVende"]').forEach(cb => {
+  cb.addEventListener('change', actualizarCondicionales);
+});
+
 // ═══════════════════════════════════════════════════════════════════
 // PROGRESO — calcular % de campos completados
 // ═══════════════════════════════════════════════════════════════════
@@ -1338,12 +1466,16 @@ function actualizarProgreso() {
     () => document.querySelector('input[name="antiguedad"]:checked') !== null,
     () => document.querySelectorAll('input[name="dondeVende"]:checked').length > 0,
     () => document.querySelector('input[name="personasTrabajan"]:checked') !== null,
+    () => document.querySelector('input[name="funcionaEnDomicilio"]:checked') !== null,
+    () => document.querySelector('input[name="habilitacionMunicipal"]:checked') !== null,
+    () => document.querySelector('input[name="situacionAfip"]:checked') !== null,
+    () => document.querySelector('input[name="principalIngreso"]:checked') !== null,
     () => document.querySelector('input[name="tieneRedes"]:checked') !== null,
     () => document.querySelector('input[name="mediosPagoDigitales"]:checked') !== null,
-    () => document.querySelector('input[name="situacionAfip"]:checked') !== null,
     () => document.querySelectorAll('input[name="queMejorar"]:checked').length > 0,
     () => document.querySelectorAll('input[name="interesParticipar"]:checked').length > 0,
     () => document.querySelectorAll('input[name="disponibilidad"]:checked').length > 0,
+    () => document.querySelectorAll('input[name="capacitacionPrevia"]:checked').length > 0,
     () => document.getElementById('autorizacionContacto').checked
   ];
   const completos = grupos.filter(fn => fn()).length;
@@ -1422,7 +1554,7 @@ function validarFormulario() {
   }
 
   // Radios requeridos
-  const reqRadios = ['edad', 'rubro', 'etapa', 'antiguedad', 'personasTrabajan', 'tieneRedes', 'mediosPagoDigitales', 'situacionAfip'];
+  const reqRadios = ['edad', 'rubro', 'etapa', 'antiguedad', 'personasTrabajan', 'funcionaEnDomicilio', 'habilitacionMunicipal', 'situacionAfip', 'principalIngreso', 'tieneRedes', 'mediosPagoDigitales'];
   reqRadios.forEach(name => {
     if (!document.querySelector(`input[name="${name}"]:checked`)) {
       mostrarError(name);
@@ -1434,7 +1566,7 @@ function validarFormulario() {
   });
 
   // Checkboxes requeridos (al menos uno)
-  const reqChecks = ['dondeVende', 'queMejorar', 'interesParticipar', 'disponibilidad'];
+  const reqChecks = ['dondeVende', 'queMejorar', 'interesParticipar', 'disponibilidad', 'capacitacionPrevia'];
   reqChecks.forEach(name => {
     if (document.querySelectorAll(`input[name="${name}"]:checked`).length === 0) {
       mostrarError(name);
@@ -1497,7 +1629,14 @@ function recolectarDatos() {
     antiguedad: fd.get('antiguedad') || '',
     dondeVende: fd.getAll('dondeVende'),
     dondeVendeOtro: fd.getAll('dondeVende').includes('Otro') ? (fd.get('dondeVendeOtro')?.trim() || '') : '',
+    tipoLocal: fd.get('tipoLocal') || '',
+    tipoLocalOtro: fd.get('tipoLocal') === 'Otro' ? (fd.get('tipoLocalOtro')?.trim() || '') : '',
+    direccion: fd.get('direccion')?.trim() || '',
     personasTrabajan: fd.get('personasTrabajan') || '',
+    funcionaEnDomicilio: fd.get('funcionaEnDomicilio') || '',
+    habilitacionMunicipal: fd.get('habilitacionMunicipal') || '',
+    situacionAfip: fd.get('situacionAfip') || '',
+    principalIngreso: fd.get('principalIngreso') || '',
     tieneRedes: fd.get('tieneRedes') || '',
     cualesRedes: fd.get('tieneRedes') === 'Sí' ? (fd.get('cualesRedes')?.trim() || '') : '',
     mediosPagoDigitales: fd.get('mediosPagoDigitales') || '',
@@ -1506,6 +1645,7 @@ function recolectarDatos() {
     queMejorarOtro: fd.getAll('queMejorar').includes('Otro') ? (fd.get('queMejorarOtro')?.trim() || '') : '',
     interesParticipar: fd.getAll('interesParticipar'),
     disponibilidad: fd.getAll('disponibilidad'),
+    capacitacionPrevia: fd.getAll('capacitacionPrevia'),
     autorizacionContacto: fd.get('autorizacionContacto') === 'on'
   };
   return datos;
@@ -1524,6 +1664,7 @@ function renderPreview(d) {
   const rubroFinal = d.rubro === 'Otro' && d.rubroOtro ? `Otro: ${d.rubroOtro}` : d.rubro;
   const dondeVendeFinal = [...d.dondeVende.filter(v => v !== 'Otro')];
   if (d.dondeVende.includes('Otro') && d.dondeVendeOtro) dondeVendeFinal.push(`Otro: ${d.dondeVendeOtro}`);
+  const tipoLocalFinal = d.tipoLocal === 'Otro' && d.tipoLocalOtro ? `Otro: ${d.tipoLocalOtro}` : d.tipoLocal;
   const queMejorarFinal = [...d.queMejorar.filter(v => v !== 'Otro')];
   if (d.queMejorar.includes('Otro') && d.queMejorarOtro) queMejorarFinal.push(`Otro: ${d.queMejorarOtro}`);
 
@@ -1551,7 +1692,17 @@ function renderPreview(d) {
       <div class="preview-row"><div class="preview-label">Etapa</div><div class="preview-value">${fmt(d.etapa)}</div></div>
       <div class="preview-row"><div class="preview-label">Antigüedad</div><div class="preview-value">${fmt(d.antiguedad)}</div></div>
       <div class="preview-row"><div class="preview-label">Dónde vende</div><div class="preview-value">${fmt(dondeVendeFinal)}</div></div>
+      ${d.tipoLocal ? `<div class="preview-row"><div class="preview-label">Tipo de local</div><div class="preview-value">${fmt(tipoLocalFinal)}</div></div>` : ''}
+      ${d.direccion ? `<div class="preview-row"><div class="preview-label">Dirección</div><div class="preview-value">${fmt(d.direccion)}</div></div>` : ''}
       <div class="preview-row"><div class="preview-label">Personas que trabajan</div><div class="preview-value">${fmt(d.personasTrabajan)}</div></div>
+    </div>
+
+    <div class="preview-section">
+      <div class="preview-section-title">3.5 · Regularización</div>
+      <div class="preview-row"><div class="preview-label">Funciona en domicilio</div><div class="preview-value">${fmt(d.funcionaEnDomicilio)}</div></div>
+      <div class="preview-row"><div class="preview-label">Habilitación municipal</div><div class="preview-value">${fmt(d.habilitacionMunicipal)}</div></div>
+      <div class="preview-row"><div class="preview-label">Situación AFIP</div><div class="preview-value">${fmt(d.situacionAfip)}</div></div>
+      <div class="preview-row"><div class="preview-label">Principal ingreso</div><div class="preview-value">${fmt(d.principalIngreso)}</div></div>
     </div>
 
     <div class="preview-section">
@@ -1559,7 +1710,6 @@ function renderPreview(d) {
       <div class="preview-row"><div class="preview-label">Tiene redes sociales</div><div class="preview-value">${fmt(d.tieneRedes)}</div></div>
       ${d.tieneRedes === 'Sí' ? `<div class="preview-row"><div class="preview-label">Cuáles usa</div><div class="preview-value">${fmt(d.cualesRedes)}</div></div>` : ''}
       <div class="preview-row"><div class="preview-label">Medios de pago digitales</div><div class="preview-value">${fmt(d.mediosPagoDigitales)}</div></div>
-      <div class="preview-row"><div class="preview-label">Situación AFIP</div><div class="preview-value">${fmt(d.situacionAfip)}</div></div>
     </div>
 
     <div class="preview-section">
@@ -1574,7 +1724,12 @@ function renderPreview(d) {
     </div>
 
     <div class="preview-section">
-      <div class="preview-section-title">7 · Autorización</div>
+      <div class="preview-section-title">8 · Trayectoria</div>
+      <div class="preview-row"><div class="preview-label">Capacitación o programa previo</div><div class="preview-value">${fmt(d.capacitacionPrevia)}</div></div>
+    </div>
+
+    <div class="preview-section">
+      <div class="preview-section-title">9 · Autorización</div>
       <div class="preview-row"><div class="preview-label">Autorización de contacto</div><div class="preview-value">${d.autorizacionContacto ? 'Sí' : 'No'}</div></div>
     </div>
   `;
