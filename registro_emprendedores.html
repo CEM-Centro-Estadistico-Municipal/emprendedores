@@ -906,8 +906,10 @@ main {
           <option>Moreno y Gral. Paz</option>
           <option>Serrano Soto</option>
           <option>Verón de Astrada</option>
-          <option>Otro / Zona rural</option>
+          <option>Zona rural</option>
+          <option value="Otro">Otro (especificar)</option>
         </select>
+        <input type="text" id="barrioOtro" name="barrioOtro" class="otro-input" placeholder="Especificá tu barrio">
         <div class="field-error" data-error-for="barrio"><i data-lucide="alert-circle"></i> Seleccioná tu barrio.</div>
       </div>
 
@@ -1024,6 +1026,7 @@ main {
           <label class="option"><input type="checkbox" name="dondeVende" value="Ferias"><span class="option-text">Ferias</span></label>
           <label class="option"><input type="checkbox" name="dondeVende" value="Local propio"><span class="option-text">Local propio</span></label>
           <label class="option"><input type="checkbox" name="dondeVende" value="Por encargo / boca a boca"><span class="option-text">Por encargo / boca a boca</span></label>
+          <label class="option"><input type="checkbox" name="dondeVende" value="Vendedores ambulantes"><span class="option-text">Vendedores ambulantes</span></label>
           <label class="option"><input type="checkbox" name="dondeVende" value="Otro" data-toggle="dondeVendeOtro"><span class="option-text">Otro (especificar)</span></label>
         </div>
         <input type="text" id="dondeVendeOtro" name="dondeVendeOtro" class="otro-input" placeholder="Especificá dónde vendés">
@@ -1094,6 +1097,8 @@ main {
           <label class="option"><input type="radio" name="situacionAfip" value="No, todavía no" required><span class="option-text">No, todavía no</span></label>
           <label class="option"><input type="radio" name="situacionAfip" value="Estoy en proceso de inscribirme"><span class="option-text">Estoy en proceso de inscribirme</span></label>
           <label class="option"><input type="radio" name="situacionAfip" value="Sí, soy monotributista"><span class="option-text">Sí, soy monotributista</span></label>
+          <label class="option"><input type="radio" name="situacionAfip" value="Sí, monotributo social"><span class="option-text">Sí, monotributo social</span></label>
+          <label class="option"><input type="radio" name="situacionAfip" value="Sí, monotributo promovido"><span class="option-text">Sí, monotributo promovido</span></label>
           <label class="option"><input type="radio" name="situacionAfip" value="Sí, responsable inscripto/a"><span class="option-text">Sí, responsable inscripto/a</span></label>
         </div>
         <div class="field-error" data-error-for="situacionAfip"><i data-lucide="alert-circle"></i> Elegí una opción.</div>
@@ -1131,8 +1136,8 @@ main {
 
         <div class="conditional" id="cualesRedes-section">
           <div class="field">
-            <label for="cualesRedes">¿Cuáles usás?</label>
-            <div class="field-help">Ej: Instagram, Facebook, TikTok. Si tenés usuarios, pegalos.</div>
+            <label for="cualesRedes">¿Cuál es tu usuario del emprendimiento?</label>
+            <div class="field-help">Ej: @miemprendimiento en Instagram, Mi Emprendimiento en Facebook.</div>
             <input type="text" id="cualesRedes" name="cualesRedes" placeholder="@miemprendimiento, FB: Mi Emprendimiento">
           </div>
         </div>
@@ -1340,7 +1345,7 @@ lucide.createIcons();
 // ═══════════════════════════════════════════════════════════════════
 // CONFIGURACIÓN
 // ═══════════════════════════════════════════════════════════════════
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzCEYR_StuT10CZU66Wutq1_XM6o-2eOdjjxKMCYNBer9d5JjFQtJIFU3YnRLt2TWEQjw/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyxB7MSp7L9r8TUAiaIgdX1YrMw1xG61escsqYZalfXtG8rRmOjjkzldrgRycchaKv6yA/exec';
 
 const form = document.getElementById('formulario');
 const modalPreview = document.getElementById('modalPreview');
@@ -1387,6 +1392,20 @@ document.querySelectorAll('input[type="radio"]').forEach(radio => {
       }
     });
   });
+});
+
+// ═══════════════════════════════════════════════════════════════════
+// LÓGICA CONDICIONAL — Barrio "Otro" (mostrar campo de texto)
+// ═══════════════════════════════════════════════════════════════════
+document.getElementById('barrio').addEventListener('change', () => {
+  const barrioSelect = document.getElementById('barrio');
+  const barrioOtroInput = document.getElementById('barrioOtro');
+  if (barrioSelect.value === 'Otro') {
+    barrioOtroInput.classList.add('visible');
+  } else {
+    barrioOtroInput.classList.remove('visible');
+    barrioOtroInput.value = '';
+  }
 });
 
 // ═══════════════════════════════════════════════════════════════════
@@ -1613,12 +1632,15 @@ form.addEventListener('change', (e) => {
 // ═══════════════════════════════════════════════════════════════════
 function recolectarDatos() {
   const fd = new FormData(form);
+  const barrio = fd.get('barrio');
+  const barrioFinal = barrio === 'Otro' ? (fd.get('barrioOtro')?.trim() || 'Otro') : barrio;
+
   const datos = {
     nombreApellido: fd.get('nombreApellido')?.trim() || '',
     dni: fd.get('dni')?.replace(/\D/g, '') || '',
     telefono: fd.get('telefono')?.trim() || '',
     email: fd.get('email')?.trim() || '',
-    barrio: fd.get('barrio') || '',
+    barrio: barrioFinal,
     edad: fd.get('edad') || '',
     genero: fd.get('genero') || '',
     nombreEmprendimiento: fd.get('nombreEmprendimiento')?.trim() || '',
